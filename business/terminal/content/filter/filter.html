@@ -1,0 +1,90 @@
+<div class="mb40">
+    <h4 class="fz14 mb10 v-line">模版名称</h4>
+
+    <form name="caseNameForm" novalidate>
+        <label class="tpl-name-label">
+            <input class="tpl-name-ipt"
+                   name="caseName"
+                   ng-model="vm.caseName"
+                   required
+                   ng-trim="true"
+                   ng-maxlength="32"
+                   type="text"
+                   placeholder="请输入自定义的模板名称，限16个汉字内"/>
+        </label>
+    </form>
+</div>
+
+<h4 class="fz14 mb10 v-line">模版选择</h4>
+<table class="table table-bordered filter-ctn">
+    <tbody>
+        <tr>
+            <td>
+                <table class="filter-ctn-inner">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h4><strong>版式</strong>&nbsp;&nbsp;选择的版式将应用到所有页面</h4>
+                                <div>
+                                    <span ng-click="directionFilter(direction)"
+                                          ng-class="{active: filterActive.directionFilter === direction.enTxt}"
+                                          ng-repeat="direction in filterData.direction">
+                                    <i class="direction" ng-class="{vDirection: direction.enTxt === 'v', hDirection: direction.enTxt === 'h'}">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </i>
+                                    <span class="ml10" ng-bind="direction.cnTxt"></span>
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4><strong>风格</strong>&nbsp;&nbsp;选择的风格将应用到所有页面</h4>
+                                <div>
+                                    <span ng-click="tagFilter(tag)"
+                                          ng-class="{active: filterActive.tagFilter === tag.enTxt}"
+                                          ng-repeat="tag in filterData.tag"
+                                          ng-bind="tag.cnTxt">
+                                    </span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <h4><strong>配色</strong>&nbsp;&nbsp;选择的配色将应用到所有页面</h4>
+                <div>
+                    <span class="color-item-{{colorKey}}"
+                          ng-click="colorFilter(colorKey)"
+                          ng-class="{active: filterActive.colorFilter === colorKey}"
+                          ng-repeat="(colorKey, colorObj) in filterData.color">
+                    <i class="color-group color-group-{{colorKey}}">
+                        <span>
+                            <i></i>
+                        </span>
+                        <span>
+                            <span>
+                                <i></i>
+                            </span>
+                            <span>
+                                <i></i>
+                            </span>
+                            <span>
+                                <i></i>
+                            </span>
+                        </span>
+                    </i>
+                    <span class="ml10" ng-bind="colorObj.name"></span>
+                     </span>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<h4 class="fz14 mb10">使用筛选，精准选择所需模版；不选则默认展示所有模版</h4>
+<mytab tabs="tabs" base-key="baseKey"></mytab>
+<div ui-view position="cms.terminal.home.filter"></div>

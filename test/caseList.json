@@ -1,0 +1,50 @@
+{
+    "meta": {
+        "errno": 0,
+        "msg": ""
+    },
+    "result": {
+        "page": 1,
+        "page_size": 20,
+        "total": 100,
+        "total_page": 5,
+        "data": [
+            {
+                "id": 1,
+                "name": "±ê×¼°æ-Êú°æ",
+                "status": 1,
+                "create_by": "admin",
+                "create_at": "2015-09-16 12:12:12",
+                "update_by": "admin",
+                "update_at": "2015-09-16 13:12:12"
+            },
+            {
+                "id": 2,
+                "name": "±ê×¼°æ-Êú°æ",
+                "status": 2,
+                "create_by": "admin",
+                "create_at": "2015-09-16 12:12:12",
+                "update_by": "admin",
+                "update_at": "2015-09-16 13:12:12"
+            },
+            {
+                "id": 3,
+                "name": "±ê×¼°æ-Êú°æ",
+                "status": 1,
+                "create_by": "admin",
+                "create_at": "2015-09-16 12:12:12",
+                "update_by": "admin",
+                "update_at": "2015-09-16 13:12:12"
+            },
+            {
+                "id": 4,
+                "name": "±ê×¼°æ-Êú°æ",
+                "status": 2,
+                "create_by": "admin",
+                "create_at": "2015-09-16 12:12:12",
+                "update_by": "admin",
+                "update_at": "2015-09-16 13:12:12"
+            }
+        ]
+    }
+}

@@ -1,0 +1,563 @@
+/**
+ * @file 整站基础样式
+ * @author zhaoran
+ * @date 2015-06-03
+ */
+
+@import "/public/styles/mixin.less";
+
+html{
+    height: 100%;
+    background: #ddd;
+}
+
+body{
+    margin: 0 auto;
+    width: 1280px;
+    // height: 100%;
+    // overflow: hidden;
+
+    font-family: Tohama, "Microsoft Yahei";
+    font-size: 12px;
+    background: #fff;
+}
+
+a{
+    color: #666;
+    text-decoration: none;
+    cursor: pointer;
+
+    &:active{
+        text-decoration: none;
+    }
+
+    &:hover{
+        color: #666;
+        text-decoration: none;
+    }
+
+    &:focus{
+        text-decoration: none;
+        outline: none;
+    }
+
+    &:visited{
+        text-decoration: none;
+    }
+
+    &.disabled,
+    &[disabled]{
+       
+        .prevent-default();
+    }
+}
+
+ul,
+li{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+table,li,div,ul{
+    &:focus{
+        outline: none;
+    }
+}
+
+header{ 
+    
+    border-bottom: 4px solid @site-main-color;
+
+    .sys-area{
+        height: 30px;
+        line-height: 30px;
+        color: #fff;
+        background: #3d3d3d;
+    }
+
+    .sysname-wrapper{
+        float: left;
+        padding-left: 50px;
+
+    }
+
+    .sysuser-wrapper{
+        float: right;
+        padding-right: 40px;
+
+        a{
+            color: #fff;
+        }
+    }
+
+    .top-nav-area{
+        background: #333333;
+        padding: 20px 0;
+        
+        .logo{
+            float: left;
+            width: 130px;
+            height: 40px;
+            margin-left: 30px;
+            background: url(http://activities.b0.upaiyun.com/51f9d7f731d6559b7d00014d/000000/2015-8-18-1439893665050171267.jpg) 50% 50% no-repeat;
+        }
+        .navs{
+            margin-left: 200px;
+
+            a{
+                display: block;
+                float: left;
+                width: 100px;
+                height: 25px;
+                line-height: 25px;
+                color: #fff;
+                font-size: 12px;
+                margin-top: 10px;
+
+                span{
+                    margin-right: 5px;
+                }
+
+                &.active,
+                &:hover{
+                    color: #45b1ff;
+                }
+            }
+        }
+    }
+}
+
+.page-wrapper{
+
+    position: relative;
+
+    .nav-wrapper{
+        // position: absolute;
+        // top: 0;
+        // left: 0;
+        float: left;
+        width: 180px;
+    }
+
+    .content-wrapper{
+        margin-left: 180px;
+        padding-top: 20px;
+        padding-left: 40px;
+        padding-right: 40px;
+        overflow: hidden; // 消除float bug
+        min-height: 500px;
+    }
+
+    .w-crumb{
+        margin-bottom: 20px;
+    }
+
+    .w-mytab{
+        margin-bottom: 30px;
+    }
+
+    .w-stepmark{
+        margin-bottom: 30px;
+    }
+}
+
+.prevent-default{
+    .prevent-default();
+}
+
+// 按钮
+.cms-btn{
+    display: inline-block;
+    padding: 0 10px;
+    font-size: 12px;
+    text-align: center;
+    border-radius: 1px;
+
+    min-width: 80px;
+    height: 30px;
+    line-height: 30px;
+
+    color: @site-main-color;
+    background: #fff;
+    border: 1px solid @site-main-color;
+
+
+    &:active{
+
+    }
+
+    &:hover{
+        color: #fff;
+        background: #8ad0ff;
+    }
+
+    &:visited{
+
+    }
+
+    &.disabled,
+    &[disabled]{
+        color: #666;
+        background: #dedede;
+        border-color: #b9b9b9;
+        .prevent-default();
+    }
+}
+
+.cms-btn-heavy{
+    color: #fff;
+    background: @site-main-color;
+    border: 1px solid @site-main-color;
+
+    &:hover{
+        background: #8ad0ff;
+        border-color: #8ad0ff;
+    }
+
+    &.disabled,
+    &[disabled]{
+        color: #666;
+        background: #dedede;
+        border-color: #dedede;
+        .prevent-default();
+    }
+}
+
+.cms-btn-lg{
+    min-width: 140px;
+    height: 40px;
+    line-height: 40px;
+}
+
+.cms-btn-heavy-lg{
+    .cms-btn-heavy();
+    .cms-btn-lg();
+}
+
+
+// daterangepicker
+
+.daterangepicker{
+
+    .daterangepicker_start_input,
+    .daterangepicker_end_input{
+        display: none;
+    }
+
+    .ranges{
+        clear: both;
+        width: auto;
+    }
+}
+
+// 表格
+.table{
+
+    & > tbody,
+    & > thead{
+
+        & > tr{
+            & > td,
+            & > th{
+                text-align: center;
+                line-height: 25px;
+                border-right: 1px solid #dddddd;
+                vertical-align: middle;
+                .break-word();
+
+                a{
+                    color: #4caef7;
+                    text-decoration: underline;    
+                    margin: 0 10px;    
+                }
+
+                &:last-child{
+                    border-right: 0px; 
+                }
+            }
+
+            & > th{
+                background: #f2f2f2;
+                border-top: 0px; 
+                color: #666;
+                font-weight: normal;
+            }
+
+            & > td{
+                color: #333;
+                font-weight: normal;
+            }
+
+            &:last-child > td{
+                border-bottom: 1px solid #dddddd; 
+            }
+        }
+    }
+
+        
+
+        
+            
+}
+    
+// 分页器
+.pagination{
+
+    float: right;
+
+    li{
+        a{
+            margin: 0 3px;
+            border-radius: 3px;
+            color: #373b3e;
+
+            &:hover{
+                border: 1px solid #4cb2f2;
+                color: #4cb2f2;
+                background: #fff;
+            }
+            &:focus{
+                border: 1px solid #4cb2f2;
+                color: #4cb2f2;
+                background: #fff;
+            }
+        }
+
+        &.active{
+            a{
+                border: 1px solid #4cb2f2;
+                color: #4cb2f2;
+                background: #fff;
+            }
+        } 
+    }        
+}
+
+.preview-area{
+    float: left;
+    width: 360px;
+    &.fix{
+        position: fixed;
+        top: 0;
+    }
+}
+
+.edit-area{
+    margin-left: 360px;
+    overflow: hidden;
+    background-color:#fff;
+}
+
+// 表格页面样式
+.p-list{
+    .form-inline{
+
+        margin-bottom: 5px;
+
+        .form-group{
+            display: inline-block;
+            height: 30px;
+            margin-bottom: 15px;
+            margin-right: 10px;
+            vertical-align: middle;
+
+            label{
+                width: auto;
+                margin-right: 10px;
+                line-height: 30px;
+                font-weight: normal;
+                margin-bottom: 0px;
+            }
+            .form-control{
+                display: inline-block;
+                padding: 0 10px;
+                width: auto;
+                height: 30px;
+                border-radius: 2px;
+                vertical-align: baseline;
+                background: #fff;
+                font-size: 12px;
+                color: #666;
+                box-shadow: none;
+            }
+
+            select{
+                min-width: 100px;
+            }
+
+            input[type="text"]{
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            input[type="text"][readonly]{
+                cursor: pointer;
+            }
+
+            .input-group-btn .btn{
+                padding: 4px 8px;
+            }
+
+            .input-group{
+                display: inline-table;
+                margin-right: 10px;
+                vertical-align: middle;
+
+                .dropdown-menu{
+                    padding: 5px;
+
+                    .btn{
+                        border: none;
+                    }
+                }
+            }
+            .cms-btn{
+                border-radius: 3px;
+            }
+        }
+
+    }
+
+            
+}
+
+.icon-success{
+
+    position: relative;
+    display: inline-block;
+    width: 33px;
+    height: 33px;
+    color: #39c53e;
+
+
+    .fa-check{
+        position: absolute;
+        top: 9px;
+        left: 6px;
+        font-size: 18px;
+
+    }
+
+    .fa-circle-thin{
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 34px;
+    }
+}
+
+h2.success-icon-text{
+
+    font-size: 18px;
+    height: 33px; 
+    line-height: 33px;
+
+    .icon-success{
+        float: left;
+    }
+    span{
+        margin-left: 15px;
+    }
+}
+.fa-check-circle-o{
+    position: relative;
+    top: 2px;
+    right: 4px;
+    font-size: 20px;
+    color: #39c53e;
+}
+.fa-times-circle-o{
+    position: relative;
+    top: 2px;
+    right: 4px;
+    font-size: 20px;
+    color: #ef312d;
+}
+
+.btns{
+    margin-top: 20px;
+}
+
+.container-fluid{
+    //padding-top: 5px;
+
+    .row{
+        line-height: 30px;
+        margin-bottom: 10px;
+
+        //.col-md{
+        //    float: left;
+        //    position: relative;
+        //    min-height: 1px;
+        //    padding-left: 15px;
+        //    padding-right: 0;
+        //}
+        //
+        //.generate-columns(30);
+        //
+        //.generate-columns(@n, @i: 1) when (@i =< @n) {
+        //    .col-md-@{i} {
+        //        .col-md();
+        //        width: (@i * 25px);
+        //    }
+        //    .generate-columns(@n, (@i + 1));
+        //}
+        //
+        //.col-upload-tip{
+        //    color: #999;
+        //    line-height: 20px;
+        //}
+        //
+        //
+        //.form-control{
+        //    color: #666;
+        //    font-size: 12px;
+        //
+        //}
+
+        input[type=text],
+        select{
+            padding-left: 10px;
+            padding-right: 10px;
+            height: 30px;
+            border-radius: 2px;
+            box-shadow: none;
+        }
+
+        input[readonly]{
+            background: #fff;
+            cursor: pointer;
+        }
+
+        input[type="radio"]{
+            margin-right: 6px;
+        }
+
+        textarea{
+            border-radius: 0;
+            resize: vertical;
+            line-height: 2;
+        }
+
+        .link{
+            color: @site-main-color;
+            text-decoration: underline;
+
+            &:hover{
+                color: @site-main-color;
+                text-decoration: underline;
+            }
+        }
+
+        .tip{
+            color: #999;
+        }
+
+        .alert-tip{
+            color: #ef312d;
+        }
+
+    }
+}
+

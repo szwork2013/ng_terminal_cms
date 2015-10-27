@@ -1,0 +1,23 @@
+{
+  "name": "moment",
+  "version": "2.9.0",
+  "main": [
+    "moment.js",
+    "locale/zh-cn.js"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "tasks",
+    "component.json",
+    "composer.json",
+    "CONTRIBUTING.md",
+    "ender.js",
+    "Gruntfile.js",
+    "package.js",
+    "package.json"
+  ]
+}

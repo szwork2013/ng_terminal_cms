@@ -1,0 +1,91 @@
+<div id="create-coupon-modal">
+    <h4 class="coupon-modal-tt" ng-bind="vm.modalTitle"></h4>
+    <div class="coupon-modal-bd">
+        <form name="createAndEditCouponForm" class="p10" novalidate>
+            <div>
+                <label for="couponName">优惠名称</label>
+                <input id="couponName"
+                       class="w300"
+                       type="text"
+                       name="couponName"
+                       ng-maxlength="40"
+                       ng-minlength="4"
+                       ng-trim="true"
+                       ng-model="coupon.title"
+                       placeholder="请输入优惠全称，4-40个字符内" required/>
+                <span class="form-error" ng-show="createAndEditCouponForm.couponName.$error.required">请输入优惠名称</span>
+                <span class="form-error" ng-show="createAndEditCouponForm.couponName.$error.maxlength">优惠名称过长</span>
+                <span class="form-error" ng-show="createAndEditCouponForm.couponName.$error.minlength">优惠名称过短</span>
+            </div>
+            <div>
+                <label>所在商场</label>
+                <select ng-options="mall.id as mall.name for mall in vm.malls"
+                        ng-model="coupon.mall_id"
+                        class="w300"
+                        name="couponMall"
+                        required></select>
+                <span class="form-error" ng-show="createAndEditCouponForm.couponMall.$error.required">请选择商场</span>
+            </div>
+            <div>
+                <label for="merchantName">店铺名称</label>
+                <span class="w300">
+                    <input id="merchantName"
+                           type="button"
+                           name="merchantName"
+                           ng-model="coupon.merchant_name"
+                           ng-click="openMerchantDropMenu()"
+                           ng-value="coupon.merchant_name || '请选择关联店铺'" required/>
+                    <div class="shop-list-drop-menu" ng-show="vm.showMerchantListMenu">
+                        <div class="shop-query-box">
+                            <input ng-model="vm.queryMerchant" type="search" placeholder="输入店铺名"/>
+                            <a class="cms-btn cms-btn-heavy" ng-click="queryMerchant()">查询</a>
+                        </div>
+                        <ul>
+                            <li ng-repeat="merchant in vm.merchantList" ng-click="selectMerchant(merchant)">{{merchant.name}}</li>
+                        </ul>
+                        <div class="clearfix">
+                            <pagination total-items="vm.total"
+                                        ng-model="vm.currentPage"
+                                        items-per-page="vm.pageSize"
+                                        previous-text="上一页"
+                                        next-text="下一页"
+                                        ng-change="pageChangeHandler()">
+                            </pagination>
+                        </div>
+                    </div>
+                </span>
+                <span class="form-error" ng-show="createAndEditCouponForm.merchantName.$error.required">请选择关联店铺</span>
+            </div>
+            <div>
+                <label>优惠发布时间</label>
+                <span>
+                    <input id="couponReleaseTime" type="text" name="couponReleaseTime" required/>
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                </span>
+                <span class="notice">注：到发布时间后，该优惠信息自动上线</span>
+            </div>
+            <div>
+                <label>优惠有效时间</label>
+                <span class="w300">
+                    <input id="couponRangeTime" type="text" name="couponRangeTime" required/>
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                </span>
+            </div>
+            <div>
+                <label for="couponIntro">优惠介绍</label>
+                <textarea name="couponIntro" id="couponIntro" placeholder="请输入优惠介绍，最少12个汉字，最多104个汉字"
+                          ng-model="coupon.introduction"
+                          ng-maxlength="208"
+                          ng-minlength="24"
+                          ng-trim="true" required></textarea>
+                <p class="form-error pl104" ng-show="createAndEditCouponForm.couponIntro.$error.required">请输入优惠介绍</p>
+                <p class="form-error pl104" ng-show="createAndEditCouponForm.couponIntro.$error.maxlength">超出字符限制</p>
+                <p class="form-error pl104" ng-show="createAndEditCouponForm.couponIntro.$error.minlength">小于字符限制</p>
+            </div>
+        </form>
+    </div>
+    <div class="coupon-modal-ft">
+        <button class="cms-btn cms-btn-lg" type="button" ng-click="cancel()">取消</button>
+        <button class="cms-btn cms-btn-heavy-lg" type="button" ng-click="confirm()">确认</button>
+    </div>
+</div>

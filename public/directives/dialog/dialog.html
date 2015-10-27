@@ -1,0 +1,16 @@
+
+<div class="dialog confirm" ng-class="">
+    <div class="dialog-header">
+        {{title}}
+    </div>
+    <div class="dialog-body">
+        <span class="text-wrap">{{content}}</span>
+    </div>
+    <div class="dialog-footer">
+
+        <a class="cms-btn cms-btn-lg"
+            ng-repeat="btn in btns"
+            ng-class="{'cms-btn-heavy': btn.isImportant}"
+            ng-click="btnClick($index)">{{btn.text}}</a>
+    </div>
+</div>

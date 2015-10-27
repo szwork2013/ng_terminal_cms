@@ -1,0 +1,24 @@
+{
+    "meta": {
+        "errno": 0,
+        "msg": ""
+    },
+    "result": {
+        "direction":{
+            "h":"横版",
+            "v":"竖版"
+        },
+        "color":{
+            "red":"红色",
+            "green":"绿色"
+        },
+        "tag":{
+            "fancy":"高端奢华",
+            "celebration":"周年庆典",
+            "grace":"优雅大气",
+            "colorful": "五彩缤纷",
+            "cool": "超级炫酷",
+            "christmas": "圣诞风格"
+        }
+    }
+}

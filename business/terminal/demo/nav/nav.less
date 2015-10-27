@@ -1,0 +1,187 @@
+.demo {
+  -webkit-transform-origin:0 0;
+  width: 1020px;
+  -webkit-transform: scale(0.5);
+  &-in {
+    width: 1040px;
+    margin: 0 auto;
+  }
+}
+
+.abs {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+
+// layout
+.layout-nav1 {
+  // theme
+  .layout-bg-color1 {
+    //.layout-color(color, #bb935a, #069284);
+    .theme-blue-purple & {
+      background-color: rgba(88, 88, 130, 0.7);
+    }
+    .theme-orange & {
+      background-color: rgba(188, 81, 3, 0.5);
+    }
+  }
+
+  height: 520px;
+  .layout-show {
+    height: 100%;
+    .layout-boxs {
+      height: 100%;
+      .layout-box {
+        float: left;
+        position: relative;
+        background-repeat: no-repeat;
+        .layout-radius {
+          .abs;
+          width: 175px;
+          height: 175px;
+          border-radius: 100%;
+          .layout-bg-color1;
+          i {
+            display: inline-block;
+            width: 175px;
+            height: 175px;
+            background-position: center center;
+            background-repeat: no-repeat;
+          }
+        }
+        .theme-colorful & {
+          &:nth-child(1) {
+            .layout-radius {
+              background-color: rgba(218, 31, 106, 0.7);
+            }
+          }
+          &:nth-child(2) {
+            .layout-radius {
+              background-color: rgba(248, 185, 43, 0.7);
+            }
+          }
+          &:nth-child(3) {
+            .layout-radius {
+              background-color: rgba(137, 187, 61, 0.7);
+            }
+          }
+          &:nth-child(4) {
+            .layout-radius {
+              background-color: rgba(67, 183, 179, 0.7);
+            }
+          }
+          &:nth-child(5) {
+            .layout-radius {
+              background-color: rgba(218, 31, 106, 0.7);
+            }
+          }
+        }
+      }
+    }
+  }
+  // 图标
+  .layout-shop i {
+    background-image: url('img/shop1.png');
+  }
+  .layout-family i {
+    background-image: url('img/family1.png');
+  }
+  .layout-food i {
+    background-image: url('img/food1.png');
+  }
+  .layout-play i {
+    background-image: url('img/play1.png');
+  }
+
+  // 显示2个模块
+  &-2 {
+    .layout-boxs {
+      .layout-box {
+        width: 50%;
+        height: 100%;
+      }
+      .layout-shop {
+        background: url('img/2-shop.jpg') no-repeat;
+      }
+      .layout-family {
+        background: url('img/2-family.jpg') no-repeat;
+      }
+      .layout-food {
+        background: url('img/2-food.jpg') no-repeat;
+      }
+      .layout-play {
+        background: url('img/2-play.jpg') no-repeat;
+      }
+    }
+  }
+
+  // 显示3个模块
+  &-3 {
+    .layout-boxs {
+      .layout-box {
+        width: 33.3%;
+        height: 100%;
+      }
+      .layout-shop {
+        background: url('img/3-shop.jpg') no-repeat;
+      }
+      .layout-family {
+        background: url('img/3-family.jpg') no-repeat;
+      }
+      .layout-food {
+        background: url('img/3-food.jpg') no-repeat;
+      }
+      .layout-play {
+        background: url('img/3-play.jpg') no-repeat;
+      }
+    }
+  }
+
+  // 显示4个模块
+  &-4 {
+    .layout-boxs {
+      .layout-box {
+        width: 25%;
+        height: 100%;
+      }
+      .layout-shop {
+        background: url('img/4-shop.jpg') no-repeat;
+      }
+      .layout-family {
+        background: url('img/4-family.jpg') no-repeat;
+      }
+      .layout-food {
+        background: url('img/4-food.jpg') no-repeat;
+      }
+      .layout-play {
+        background: url('img/4-play.jpg') no-repeat;
+      }
+    }
+  }
+
+  // 显示5个模块
+  &-5 {
+    .layout-boxs {
+      .layout-box {
+        width: 20%;
+        height: 100%;
+      }
+      .layout-shop {
+        background: url('img/5-shop.jpg') no-repeat;
+      }
+      .layout-family {
+        background: url('img/5-family.jpg') no-repeat;
+      }
+      .layout-food {
+        background: url('img/5-food.jpg') no-repeat;
+      }
+      .layout-play {
+        background: url('img/5-play.jpg') no-repeat;
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+<btn ng-click="setValue('name', 'test1');" ng-class="{active: name === 'test1'}" class="btn btn-primary">
+    test1
+</btn>
+<btn ng-click="setValue('name', 'ad1');" ng-class="{active: name === 'ad1'}" class="btn btn-primary">
+    ad1
+</btn>
+<btn ng-click="setValue('name', 'info1');" ng-class="{active: name === 'info1'}" class="btn btn-primary">
+    info1
+</btn>
+<load-module template="/terminal_static/business/terminal/modules/{{name}}/index.html" ng-model="module[name]" dynamic-ctrl="module[name].controller"></load-module>

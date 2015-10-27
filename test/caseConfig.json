@@ -1,0 +1,159 @@
+{
+  "show": 2,
+  "shopCatgs": [
+    {
+      "id": 1,
+      "name": "类别1",
+      "isExpand": true,
+      "isDefault": true,
+      "shopList": [
+        {
+          "id": 1,
+          "name": "店铺1",
+          "img": "",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "name": "店铺2",
+          "img": "",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "name": "店铺3",
+          "img": "",
+          "isSelected": true
+        },
+        {
+          "id": 4,
+          "name": "店铺4",
+          "img": "",
+          "isSelected": false
+        },
+        {
+          "id": 5,
+          "name": "店铺5",
+          "img": "",
+          "isSelected": true
+        },
+        {
+          "id": 6,
+          "name": "店铺7",
+          "img": "",
+          "isSelected": true
+        }
+      ],
+      "stickShops": [
+        {
+          "id": 3,
+          "name": "店铺3",
+          "img": ""
+        },
+        {
+          "id": 6,
+          "name": "店铺7",
+          "img": "",
+          "isSelected": false
+        },
+        {
+          "id": 5,
+          "name": "店铺5",
+          "img": "",
+          "isSelected": false
+        },
+        [],
+        [],
+        []
+      ]
+    },
+    {
+      "id": 2,
+      "name": "类别2",
+      "isExpand": false,
+      "isDefault": false,
+      "shopList": "",
+      "stickShops": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    },
+    {
+      "id": 3,
+      "name": "类别3",
+      "isExpand": false,
+      "isDefault": false,
+      "shopList": [
+        {
+          "id": 1,
+          "name": "店铺1",
+          "img": "",
+          "isSelected": false
+        },
+        {
+          "id": 2,
+          "name": "店铺2",
+          "img": "",
+          "isSelected": false
+        },
+        {
+          "id": 3,
+          "name": "店铺3",
+          "img": "",
+          "isSelected": false
+        },
+        {
+          "id": 4,
+          "name": "店铺4",
+          "img": "",
+          "isSelected": false
+        },
+        {
+          "id": 5,
+          "name": "店铺5",
+          "img": "",
+          "isSelected": true
+        },
+        {
+          "id": 6,
+          "name": "店铺7",
+          "img": "",
+          "isSelected": false
+        }
+      ],
+      "stickShops": [
+        {
+          "id": 5,
+          "name": "店铺5",
+          "img": ""
+        },
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    },
+    {
+      "id": 4,
+      "name": "类别4",
+      "isExpand": false,
+      "isDefault": false,
+      "shopList": "",
+      "stickShops": [
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    }
+  ],
+  "sort": "time",
+  "name": "brand1"
+}

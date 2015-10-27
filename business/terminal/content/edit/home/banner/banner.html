@@ -1,0 +1,151 @@
+<div class="block-edit-bd">
+    <div class="module-config-item clearfix">
+        <span>数量选择</span>
+        <span>
+            <label class="module-config-item-children" ng-repeat="num in adModule.config.num">
+                <span class="radio" ng-class="{selected: setting.num === num}">
+                    <input type="radio"
+                           ng-model="setting.num"
+                           ng-value="num"/>
+                    <i></i>
+                </span>
+                {{num}}
+            </label>
+        </span>
+    </div>
+
+    <!--<div class="module-config-item clearfix">-->
+    <!--<span>类型</span>-->
+    <!--<span>-->
+    <!--<label class="module-config-item-children" ng-repeat="(typeKey, typeText) in adModule.config.type">-->
+    <!--<span class="checkbox" ng-class="{selected: vm.type[typeKey]}">-->
+    <!--<input type="checkbox" ng-model="vm.type[typeKey]" ng-change="check($event, typeKey)"/>-->
+    <!--<i></i>-->
+    <!--</span>-->
+    <!--{{typeText}}-->
+    <!--</label>-->
+    <!--</span>-->
+    <!--</div>-->
+</div>
+
+<div class="p20">
+    <h4 class="module-config-tt2">上传</h4>
+
+    <div class="module-fileUpload-bd clearfix">
+        <span>图片/视频</span>
+        <span>
+            <div>
+                <h4>
+                    <span>图片：jpg格式、尺寸1080*580px、大小90k内</span>
+
+                    <span>
+                        视频：avi格式、比例4：3、时长15s内，大小20MB内
+                        <span class="pull-right red">*视频展现位置默认第一张</span>
+                    </span>
+                </h4>
+
+                <div class="clearfix">
+                    <h5 class="mt0">可选图片素材共<span ng-bind="setting.num"></span>张（其中视频1个）</h5>
+                    <div class="img-row clearfix"
+                          ng-if="setting.data.length"
+                          ng-repeat="file in setting.data">
+                        <div class="img-box pull-left">
+                            <img width="100%" ng-if="file.type === 'image'" ng-src="{{file.url}}">
+                            <video ng-if="file.type === 'video'" ng-src="{{file.url}}" autoplay="autoplay"></video>
+                        </div>
+                        <div class="pt22">
+                            <label class="mlr8">
+                                <span>
+                                    <i class="icon icon-relate"></i>
+                                </span>
+                                <input type="button" value="请点击选择图片关联页面"/>
+                            </label>
+
+                            <div class="sort-btn-ctn">
+                                <button ng-click="deleteUpload(file)">删除</button>
+                                <button ng-click="sortUp(file)">向上</button>
+                                <button ng-click="sortDown(file)">向下</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pull-left" ng-if="setting.num > setting.data.length">
+                        <div class="upload-btn"
+                             ngf-select
+                             ngf-change="upload($files)"
+                             ngf-pattern="'image/*, video/*'">
+                        </div>
+                    </div>
+
+                    <div class="pt22" ng-if="setting.num > setting.data.length">
+                        <label class="relateBtn mlr8">
+                            <span>
+                                <i class="icon icon-relate"></i>
+                            </span>
+                            <input type="button" value="请点击选择图片关联页面"/>
+                        </label>
+
+                        <div class="sort-btn-ctn">
+                            <button disabled="disabled">删除</button>
+                            <button disabled="disabled"><i class="icon icon-arrow-down"></i></button>
+                            <button disabled="disabled"><i class="icon icon-arrow-up"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+    <div class="module-config-item clearfix">
+        <span>播放方式</span>
+        <span>
+            <label class="module-config-item-children" ng-repeat="(modeKey, modeText) in adModule.config.mode">
+                <span class="radio" ng-class="{selected: setting.mode === modeKey}">
+                    <input type="radio"
+                           ng-model="setting.mode"
+                           ng-value="modeKey"/>
+                    <i></i>
+                </span>
+                {{modeText}}
+            </label>
+        </span>
+    </div>
+    <div class="module-config-item clearfix">
+        <span>轮播效果</span>
+        <span>
+            <label class="module-config-item-children">
+                <select class="dropdown-m" ng-model="setting.effect"
+                        ng-options="effectKey as effectText for (effectKey, effectText) in adModule.config.effect">
+                </select>
+            </label>
+        </span>
+    </div>
+    <div class="module-config-item clearfix">
+        <span>静止时间</span>
+        <span>
+            <label class="module-config-item-children">
+                <select class="dropdown-m" ng-model="setting.interval"
+                        ng-options="interval for interval in adModule.config.interval">
+                </select>
+                秒
+            </label>
+        </span>
+    </div>
+    <div class="module-config-item clearfix">
+        <span>循环方式</span>
+        <span>
+            <label class="module-config-item-children" ng-repeat="(loopKey, loopText) in adModule.config.loop">
+                <span class="radio" ng-class="{selected: setting.loop === loopKey}">
+                    <input type="radio"
+                           ng-model="setting.loop"
+                           ng-value="loopKey"/>
+                    <i></i>
+                </span>
+                {{loopText}}
+            </label>
+        </span>
+    </div>
+</div>
+<div class="save-btn-group">
+    <a class="cms-btn cms-btn-heavy-lg" ui-sref="cms.terminal.content.list">返回列表页</a>
+    <a class="cms-btn cms-btn-heavy-lg" ng-click="save()">确认保存</a>
+</div>

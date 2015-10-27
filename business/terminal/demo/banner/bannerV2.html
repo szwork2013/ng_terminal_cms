@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  var json = {
+    "data": [{
+      "totalTime": 4,
+      "url": "test1.png",
+      "type": "img",
+      "desc": ""
+    }, {
+      "totalTime": 4,
+      "url": "test2.png",
+      "type": "img",
+      "desc": ""
+    }],
+    "mode": "default",
+    "effect": "scrollLeft",
+    "loop": "unloop",
+    "name": "banner1"
+  };
+  document.write('<embed src="BannerAD.swf" flashvars="ads=' + encodeURI(JSON.stringify(json)) + '" width="1040" height="580" />');
+  </script>
+</body>
+
+</html>

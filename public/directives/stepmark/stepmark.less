@@ -1,0 +1,48 @@
+/**
+ * @file stepmark 样式
+ * @author wangzhenfeng
+ * @date 2015-06-09
+ */
+
+@import "/public/styles/mixin.less";
+
+.w-stepmark{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+
+    span{
+        display: inline-block;
+        float: left;
+        color: #6b6b6b;
+        margin-right: 50px;
+        padding-bottom: 5px;
+
+        .prevent-default();
+
+        div{
+            width: 18px;
+            height: 18px;
+            text-align: center;
+            line-height: 18px;
+            border-radius: 9px;
+            background: #bbbbbb;
+            color: #fff;
+            display: inline-block;
+            float: left;
+            margin-right: 10px;
+        }
+
+    }
+    span.active{
+        color: #51b2f7;
+        border-bottom: 2px solid #51b2f7;
+
+        div{
+            background: #51b2f7;
+        }
+    }
+
+}
+
+

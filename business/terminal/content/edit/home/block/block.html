@@ -1,0 +1,26 @@
+<div class="block-edit-ctn">
+    <div>
+        <h3 class="block-edit">模块编辑</h3>
+
+        <div class="module-type-num-ctn">
+            <h4 class="module-type-num-tt">类目</h4>
+            <div class="module-config-item clearfix">
+                <span>类别选择</span>
+                <span>
+                    <label class="module-config-item-children" ng-repeat="module in modules">
+                        <span class="radio" ng-class="{selected: userData.selectedModuleName === module.name}">
+                            <input type="radio"
+                                   ng-model="userData.selectedModuleName"
+                                   ng-value="module.name"/>
+                            <i></i>
+                        </span>
+                        {{module.display_type}}
+                    </label>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div ui-view postion="cms.terminal.content.edit.home.[block]">
+
+    </div>
+</div>

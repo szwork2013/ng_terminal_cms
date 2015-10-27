@@ -1,0 +1,68 @@
+<div class="mb40">
+    <h4 class="fz14 mb10 v-line">模版名称</h4>
+    <p><span>模版名称：</span>{{vm.caseInfo.name}}</p>
+</div>
+<h4 class="fz14 mb10 v-line">模版编辑</h4>
+<ul class="case-filter-list clearfix">
+    <li ng-repeat="settingData in vm.settingData">
+        <div>
+            <p ng-bind="settingData.text"></p>
+        </div>
+        <div>
+            <span ng-if="settingData.direction">
+                <i class="direction" ng-class="{vDirection: settingData.direction === 'v', hDirection: settingData.direction === 'h'}">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </i>
+                <span ng-bind="settingData.direction === 'v' ? '竖版' : '横版'"></span>
+            </span>
+            <span ng-if="settingData.enColorName">
+                <i class="color-group color-group-{{settingData.enColorName}} mb4">
+                    <span>
+                        <i></i>
+                    </span>
+                    <span>
+                        <span>
+                            <i></i>
+                        </span>
+                        <span>
+                            <i></i>
+                        </span>
+                        <span>
+                            <i></i>
+                        </span>
+                    </span>
+                </i>
+                <span ng-bind="settingData.cnColorName"></span>
+            </span>
+            <span ng-if="settingData.enTagName">
+                <span ng-bind="settingData.cnTagName"></span>
+            </span>
+        </div>
+    </li>
+</ul>
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>页面名称</th>
+        <th>更新时间</th>
+        <th>更新人</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="page in vm.caseInfo.pages">
+        <td ng-bind="page.display_name"></td>
+        <td ng-bind="page.update_at"></td>
+        <td ng-bind="page.update_by"></td>
+        <td>
+            <a ui-sref="cms.terminal.content.edit.{{page.name}}({caseId: vm.caseInfo.id, type: page.name})">编辑</a>
+            <a>预览</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a ui-sref="cms.terminal.content.list" class="cms-btn cms-btn-heavy-lg">返回</a>
+</div>

@@ -1,0 +1,13 @@
+<div class="filter-tpl-ctn">
+    <ul class="filter-tpl-list clearfix">
+        <li ng-repeat="customLayout in customLayoutList">
+            <div>
+                <img ng-src="{{customLayout.preview}}" alt="customLayout.name" class="img-thumbnail"/>
+            </div>
+            <div>
+                <p ng-bind="customLayout.name"></p>
+                <a ng-click="tplCreate(customLayout)" class="cms-btn cms-btn-heavy-lg">编辑</a>
+            </div>
+        </li>
+    </ul>
+</div>

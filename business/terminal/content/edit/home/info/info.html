@@ -1,0 +1,92 @@
+<div class="block-edit-bd">
+    <div class="module-config-item clearfix">
+        <span>所在城市</span>
+        <span>
+            <label class="module-config-item-children">
+                <select class="dropdown-m" ng-model="setting.city"
+                        ng-options="cityText for (cityKey, cityText) in infoModule.config.city">
+                </select>
+            </label>
+        </span>
+    </div>
+    <div class="module-config-item clearfix">
+        <span>商场名称</span>
+        <span>
+            <p ng-bind="setting.mallName" class="mb0 mlr20"></p>
+            <!--<input type="text"-->
+                   <!--class="text-ipt module-config-item-children"-->
+                   <!--ng-readonly="true"-->
+                   <!--ng-model="setting.mallName"-->
+                   <!--placeholder="请输入12个中文字符内"/>-->
+        </span>
+    </div>
+    <div class="module-config-item clearfix">
+        <span>信息选择</span>
+        <span>
+            <label class="module-config-item-children"
+                   ng-repeat="(baseInfoKey, baseInfoText) in infoModule.config.baseInfo"
+                   ng-class="{disabled: !setting.baseInfo[baseInfoKey]}">
+                <span class="checkbox"
+                      ng-class="{selected: setting.baseInfo[baseInfoKey]}">
+                    <input type="checkbox" ng-model="setting.baseInfo[baseInfoKey]"
+                           ng-change="check($event, baseInfoKey)"
+                           ng-disabled="true"/>
+                    <i></i>
+                </span>
+                {{baseInfoText}}
+            </label>
+        </span>
+    </div>
+</div>
+
+<div class="p20">
+    <h4 class="module-config-tt2">上传内容</h4>
+
+    <div class="module-fileUpload-bd clearfix">
+        <span>商场LOGO</span>
+        <span>
+           <div>
+               <h4>jpg格式、高度40px内，宽度不限，大小90KB内</h4>
+
+               <div>
+                    <span class="img-row clearfix" ng-if="vm.logoUrl">
+                        <div class="img-box">
+                            <img width="100%" ng-src="{{vm.logoUrl}}">
+                            <i ng-click="deleteUpload()">X</i>
+                        </div>
+                    </span>
+
+                   <div class="upload-btn"
+                        ng-if="!vm.logoUrl"
+                        ngf-select
+                        ngf-change="uploadImg($files)"
+                        ngf-pattern="'image/*'"
+                        ngf-max-height="40"
+                        ngf-max-width="40"
+                        ngf-max-size="'90KB'"
+                        ngf-multiple="multiple">
+                   </div>
+               </div>
+           </div>
+        </span>
+    </div>
+
+    <div class="module-config-item clearfix">
+        <span>样式选择</span>
+         <span>
+             <label class="module-config-item-children " ng-repeat="show in infoModule.config.show">
+                <span class="radio" ng-class="{selected: setting.show === show}">
+                    <input type="radio"
+                           ng-model="setting.show"
+                           ng-value="show"/>
+                    <i></i>
+                </span>
+                <div class="layout-show layout-{{vm.moduleName}}-show layout-{{vm.moduleName}}-show-{{$index + 1}}"></div>
+             </label>
+         </span>
+    </div>
+</div>
+<div class="save-btn-group">
+    <a class="cms-btn cms-btn-heavy-lg" ui-sref="cms.terminal.content.list">返回列表页</a>
+    <a class="cms-btn cms-btn-heavy-lg" ng-click="save()">确认保存</a>
+</div>

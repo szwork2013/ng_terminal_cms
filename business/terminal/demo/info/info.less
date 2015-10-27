@@ -1,0 +1,341 @@
+.demo {
+  -webkit-transform-origin:0 0;
+  width: 1020px;
+  -webkit-transform: scale(0.5);
+  &-in {
+    width: 1040px;
+    margin: 0 auto;
+  }
+}
+
+
+.dib {
+  display: inline-block;
+}
+.vam {
+  vertical-align: middle;
+}
+.db {
+  display: block;
+}
+.pull:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+// info1
+.layout-info1 {
+  // theme
+  .layout-color1 {
+    //.layout-color(color, #bb935a, #069284);
+    .theme-blue-purple & {
+      color: #bb935a;
+    }
+    .theme-orange & {
+      color: #069284;
+    }
+  }
+  .layout-color2 {
+    .theme-blue-purple & {
+      color: #232853;
+    }
+    .theme-orange & {
+      color: #d16711;
+    }
+  }
+  .layout-color3 {
+    .theme-blue-purple & {
+      color: #4f3a67;
+    }
+    .theme-orange & {
+      color: #d16711;
+    }
+  }
+  .layout-g-color1 {
+    .theme-blue-purple & {
+      background: -webkit-gradient(linear,0 0,0 100%,from(#393971),to(#5f3a60));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .theme-orange & {
+      background: -webkit-gradient(linear,0 0,0 100%,from(#d16711),to(#bc5103));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+  .layout-bd-color1 {
+    .theme-blue-purple & {
+      border-color: #4f3a67;
+    }
+    .theme-orange & {
+      border-color: #d16711;
+    }
+  }
+  .layout-bg-color2 {
+    .theme-blue-purple & {
+      background-color: #4f3a67;
+    }
+    .theme-orange & {
+      background-color: #d16711;
+    }
+  }
+
+  // common
+  background-color: #fff;
+  .layout-city {
+    font-size: 32px;
+    display: inline-block;
+  }
+  .layout-time {
+    display: inline-block;
+    font-weight: 700;
+    font-size: 88px;
+  }
+  .layout-datetime {
+    display: inline-block;
+    font-size: 30px;
+  }
+  .layout-mall-name {
+    font-size: 70px;
+    .dib;
+    vertical-align: middle;
+  }
+  .layout-logos {
+    .dib;
+    overflow: hidden;
+    margin-right: -15px;
+    .layout-mall-logo, .layout-ry-logo {
+      border-left: 1px solid #460508;
+      margin-left: -1px;
+      display: inline-block;
+      vertical-align: middle;
+      padding: 0 15px;
+    }
+  }
+  .layout-show {
+    height: 260px;
+    overflow: hidden;
+    border: 1px solid #000;
+  }
+  .layout-mall-logo-i {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .layout-ry-logo-i {
+    width: 150px;
+    height: 40px;
+    display: inline-block;
+    background-image: url('img/icon-ry.jpg');
+  }
+
+  // 展现形式
+  .layout-show1 {
+    .pull-left {
+      margin: 85px 0 65px 20px;
+    }
+    .pull-right {
+      margin: 85px 20px 20px 0;
+      .db {
+        margin-bottom: 40px;
+      }
+    }
+    .layout-city {
+      width: 1em;
+    }
+    .layout-time {
+      .layout-g-color1;
+      line-height: 1;
+      .theme-colorful & {
+        color: #635059;
+      }
+    }
+    .layout-city {
+      .layout-g-color1;
+      .theme-colorful & {
+        color: #f8b92b;
+      }
+    }
+    .layout-mall-name {
+      .layout-g-color1;
+      font-weight: 700;
+      line-height: 1.1;
+      .theme-colorful & {
+        color: #635059;
+      }
+    }
+    .layout-datetime {
+      .layout-color2;
+      .theme-colorful & {
+        color: #5ab7b3;
+      }
+    }
+  }
+  .layout-show2 {
+    .layout-city {
+      width: 1em;
+    }
+    .layout-infos {
+      display: inline-block;
+      border-bottom: 3px solid;
+      .layout-bd-color1;
+      .theme-colorful & {
+        border-color: #009d9b;
+      }
+      margin: 86px 0 0 20px;
+      .dib {
+        margin-left: 20px;
+        line-height: 1;
+      }
+    }
+    .layout-time {
+      .layout-color1;
+      font-size: 55px;
+      .theme-colorful & {
+        color: #009d9b;
+      }
+    }
+    .layout-city {
+      font-size: 21px;
+      .layout-color1;
+      .theme-colorful & {
+        color: #009d9b;
+      }
+    }
+    .layout-datetime {
+      font-size: 20px;
+      .layout-color1;
+      .theme-colorful & {
+        color: #009d9b;
+      }
+    }
+    .layout-mall-name {
+      .layout-g-color1;
+      font-weight: 700;
+      .theme-colorful & {
+        color: #89bb3d;
+      }
+    }
+    .text-right {
+      margin-right: 20px;
+    }
+  }
+  .layout-show3 {
+    .layout-infos {
+      margin: 60px 0 0 35px;
+    }
+    .layout-time {
+      font-size: 107px;
+      .layout-g-color1;
+      font-weight: 400;
+      line-height: 1;
+      .theme-colorful & {
+        color: #da1f6a;
+      }
+    }
+    .layout-datetime {
+      font-size: 20px;
+      .layout-color3;
+      .theme-colorful & {
+        color: #634f59;
+      }
+    }
+    .layout-city {
+      font-size: 20px;
+      .layout-color3;
+      .theme-colorful & {
+        color: #da1f6a;
+      }
+    }
+    .layout-mall-name {
+      font-size: 41px;
+      .layout-color1;
+      vertical-align: middle;
+      .theme-colorful & {
+        color: #634f59;
+      }
+    }
+    .layout-mall-logo-i {
+      margin-left: 15px;
+    }
+    .text-right {
+      margin: 0 20px 20px 0;
+    }
+  }
+  .layout-show4 {
+    .pull {
+      .pull-left {
+        margin: 60px 0 0 20px;
+      }
+      .pull-right {
+        margin: 40px 48px 0 0;
+      }
+    }
+    .layout-mall-name {
+      font-size: 70px;
+      .layout-g-color1;
+      .theme-colorful & {
+        color: #da1f6a;
+      }
+    }
+    .layout-infos {
+      border: 1px solid;
+      .layout-bd-color1;
+      .theme-colorful & {
+        border-color: #da1f6a;
+      }
+      text-align: center;
+      .dib {
+        line-height: 1.6;
+        .db {
+          padding: 0 20px;
+          .layout-bg-color2;
+          .theme-colorful & {
+            background-color: #da1f6a;
+          }
+          color: #fff;
+          .layout-time {
+            font-weight: 400;
+            line-height: 1.2;
+          }
+        }
+      }
+      .layout-datetime {
+        font-size: 20px;
+        .layout-color3;
+        .theme-colorful & {
+          color: #634f59;
+        }
+      }
+      .layout-city {
+        font-size: 20px;
+        .layout-color3;
+        .theme-colorful & {
+          color: #634f59;
+        }
+      }
+    }
+    .layout-logos {
+      margin: 14px 0 25px 5px;
+    }
+  }
+
+  // 后台显示展现形式
+  &-show {
+    width: 180px;
+    height: 45px;
+    background-repeat: no-repeat;
+    // loop
+    .loop(@n, @i: 1) when (@i =< @n) {
+      &-@{i} {
+        //width: (@i * 100% / @n);
+        background-image: %("url('img/show/@{i}.png')", @i);
+      }
+      .loop(@n, (@i + 1));
+    }
+
+    .loop(4);
+  }
+}

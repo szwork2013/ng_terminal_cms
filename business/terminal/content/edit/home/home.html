@@ -1,0 +1,27 @@
+<div class="fz16 clearfix relative mb40" scroll-fix>
+
+    <div class="preview-area preview-ctn">
+        <h3 class="preview-case-tt" ng-bind="caseName"></h3>
+
+        <div class="preview-page theme-{{caseSetting.color}}" ng-repeat="casePageStyle in casePageStyles"
+             ng-style="casePageStyle.style">
+            <div class="preview-block"
+                 ng-repeat="block in casePageStyle.blocks"
+                 ng-class="{active: userData.blockName === block.name}"
+                 ng-click="selectBlock(block)"
+                 ng-style="block.style">
+                <span>{{userData.selectedModuleDisplayType}}</span>
+                <div ng-class="{active: userData.blockName !== block.name}" class="block-mask"></div>
+                <ry-load-module ng-if="allModule[userData.selectedModuleNameMap[block.name]]"
+                             template="/terminal_static/business/modules/{{userData.selectedModuleNameMap[block.name]}}/index.html"
+                             ng-model="allModule[userData.selectedModuleNameMap[block.name]]">
+                </ry-load-module>
+            </div>
+        </div>
+
+    </div>
+
+    <div ui-view class="edit-area" position="cms.terminal.content.edit.home">
+
+    </div>
+</div>

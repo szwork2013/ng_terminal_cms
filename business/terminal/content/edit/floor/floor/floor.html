@@ -1,0 +1,293 @@
+<div class="block-edit-bd">
+    <div class="module-config-item clearfix">
+        <span>样式选择</span>
+         <span>
+             <label class="module-config-item-children " ng-repeat="show in floorModule.config.show">
+                <span class="radio" ng-class="{selected: setting.show === show}">
+                    <input type="radio"
+                           ng-model="setting.show"
+                           ng-value="show"/>
+                    <i></i>
+                </span>
+
+                 <div class="layout-show layout-{{vm.moduleName}}-show layout-{{vm.moduleName}}-show-{{$index + 1}}"></div>
+             </label>
+         </span>
+    </div>
+</div>
+<div class="p20 dashed">
+    <h4 class="module-config-tt2">商场类型</h4>
+
+    <div class="module-config-item mb10 clearfix">
+        <span>类型</span>
+        <span>
+             <label class="module-config-item-children"
+                    ng-class="{disabled: typeKey !== 'single'}"
+                    ng-repeat="(typeKey, typeTxt) in floorModule.config.type">
+                <span class="radio"
+                      ng-class="{disabled: typeKey !== 'single', selected: setting.merchantType === typeKey}">
+                    <input type="radio"
+                           ng-disabled="typeKey !== 'single'"
+                           ng-model="setting.merchantType"
+                           ng-value="typeKey"/>
+                    <i></i>
+                </span>
+                 <span ng-bind="typeTxt"></span>
+             </label>
+         </span>
+    </div>
+    <div class="floor-config-ctn">
+        <p class="mb10">楼层显示</p>
+
+        <div class="panel panel-default fz14" ng-repeat="(buildId, buildObj) in setting.buildingMap">
+            <div class="panel-heading">
+                <h3 class="panel-title clearfix">
+                    <span ng-click="togglePanel(buildObj)">{{$index + 1}}栋</span>
+                    <span class="pull-right">
+                        <label class="module-config-item-children mlr0">
+                            <span class="checkbox" ng-class="{selected: buildObj.isShow}">
+                                <input type="checkbox" ng-model="buildObj.isShow"/>
+                                <i></i>
+                            </span>
+                            不在互动屏显示
+                        </label>
+                    </span>
+                </h3>
+            </div>
+            <div class="panel-body" ng-show="buildObj.isExpand">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span>定义楼/栋/幢/座</span>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text"
+                                   class="wp100 bd1"
+                                   ng-model="buildObj.name"
+                                   placeholder="请输入名称"/>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="wp100"
+                                    ng-model="buildObj.nameKey"
+                                    ng-options="nameKey as nameTxt for (nameKey, nameTxt) in floorModule.config.building.name"></select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span>楼层选择标题</span>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text"
+                                   class="wp100 bd1"
+                                   ng-value="buildObj.title ? buildObj.title : '楼层选择'"
+                                   placeholder='请输入标题名，默认显示"楼层选择"'/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span>店铺显示排序</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="module-config-item-children mlr0"
+                                   ng-repeat="(sortKey, sortTxt) in floorModule.config.building.merchant_sort">
+                                <span class="radio" ng-class="{selected: buildObj.merchant_sort === sortKey}">
+                                    <input type="radio"
+                                           ng-model="buildObj.merchant_sort"
+                                           ng-value="sortKey"/>
+                                    <i></i>
+                                </span>
+                                <span ng-bind="sortTxt"></span>
+                            </label>
+                            <label class="module-config-item-children mlr0"
+                                   ng-repeat="(showRuleKey, showRuleTxt) in floorModule.config.building.merchant_show_rule">
+                                <span class="checkbox" ng-class="{selected: buildObj.merchant_show_rule[showRuleKey]}">
+                                    <input type="checkbox"
+                                           ng-model="buildObj.merchant_show_rule[showRuleKey]"/>
+                                    <i></i>
+                                </span>
+                                {{showRuleTxt}}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="col-md-12">维护楼层信息</p>
+                    </div>
+                    <div class="row mb20">
+                        <div class="relative col-md-12">
+                            <ul class="nav nav-tabs">
+                                <li role="presentation"
+                                    ng-repeat="(floorId, floorObj) in buildObj.floors"
+                                    ng-click="changeFloor(buildObj, floorObj)"
+                                    ng-class="{active: vm.buildingList[$parent.$index]['activeFloor'] === floorObj.name}">
+                                    <a ng-bind="floorObj.name"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>中文名称</span>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text"
+                                   ng-model="setting.buildingMap[buildId]['floors'][vm.buildingMap[buildId].floorId].cnName"
+                                   class="wp100 bd1"
+                                   placeholder="请输入楼层中文名称"/>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="module-config-item-children mlr0">
+                                <span class="checkbox mtb0"
+                                      ng-class="{selected: setting.buildingMap[buildId]['floors'][vm.buildingMap[buildId].floorId].isNameShow}">
+                                    <input type="checkbox"
+                                           ng-model="setting.buildingMap[buildId]['floors'][vm.buildingMap[buildId].floorId].isNameShow"/>
+                                    <i></i>
+                                </span>
+                                名称、描述不在互动屏上显示
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>英文名称</span>
+                        </div>
+                        <div class="col-md-4">
+                            <input type="text"
+                                   ng-model="setting.buildingMap[buildId]['floors'][vm.buildingMap[buildId].floorId].enName"
+                                   class="wp100 bd1"
+                                   placeholder="请输入楼层英文名称"/>
+                        </div>
+                    </div>
+                    <div class="row dashed pb20">
+                        <div class="col-md-2">
+                            <span>描述</span>
+                        </div>
+                        <div class="col-md-10">
+                            <input type="text"
+                                   ng-repeat="intro in setting.buildingMap[buildId]['floors'][vm.buildingMap[buildId].floorId].introductions"
+                                   ng-model="intro.data"
+                                   class="floor-intro"
+                                   placeholder="8个汉字内，不输入默认为空"/>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="col-md-12">首屏展示店铺</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span>指定显示顺序</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="module-config-item-children mlr0"
+                                   ng-repeat="first_screen_merchant_rule in floorModule.config.building.first_screen_merchant_rule">
+                                <span class="radio"
+                                      ng-class="{selected: setting.buildingMap[buildId]['floors'][vm.buildingMap[buildId].floorId].first_screen_merchant_rule === first_screen_merchant_rule.key}">
+                                    <input type="radio"
+                                           ng-model="setting.buildingMap[buildId]['floors'][vm.buildingMap[buildId].floorId].first_screen_merchant_rule"
+                                           ng-value="first_screen_merchant_rule.key"/>
+                                    <i></i>
+                                </span>
+                                <span ng-bind="first_screen_merchant_rule.value"></span>
+                                <a class="link" ng-if="first_screen_merchant_rule.key === 'custom'"
+                                   ng-click="openMerchantShowRuleModal()">点击设置</a>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="col-md-12">推荐店铺</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>推荐1</span>
+                        </div>
+                        <div class="col-md-7">
+                            <button type="button" class="btn btn-default wp100">点击选择要推荐的店铺</button>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="sort-btn-ctn">
+                                <button><i class="icon icon-arrow-down">下</i></button>
+                                <button><i class="icon icon-arrow-up">上</i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <span>推荐2</span>
+                        </div>
+                        <div class="col-md-7">
+                            <button type="button" class="btn btn-default wp100">点击选择要推荐的店铺</button>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="sort-btn-ctn">
+                                <button><i class="icon icon-arrow-down">下</i></button>
+                                <button><i class="icon icon-arrow-up">上</i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row dashed pb20">
+                        <div class="col-md-2">
+                            <span>推荐3</span>
+                        </div>
+                        <div class="col-md-7">
+                            <button type="button" class="btn btn-default wp100">点击选择要推荐的店铺</button>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="sort-btn-ctn">
+                                <button><i class="icon icon-arrow-down">下</i></button>
+                                <button><i class="icon icon-arrow-up">上</i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span>公共设施选择</span>
+                        </div>
+                        <div class="col-md-7">
+                            <a class="link" ng-click="editPublicFacilities(buildId, vm.buildingMap[buildId].floorId)">点击编辑本楼层公共设施</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <span>已选择设施</span>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="bd1 p10">
+                                <span ng-if="!setting.buildingMap[buildId]['floors'][vm.buildingMap[buildId].floorId].public_facilities">&nbsp;</span>
+                                <span ng-repeat="public_facility in setting.buildingMap[buildId]['floors'][vm.buildingMap[buildId].floorId].public_facilities">
+                                    {{floorModule.config.building.public_facilities[public_facility] + '；'}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="p20">
+    <div class="module-config-tt3 mb20">公共设施展示LOGO</h4>
+
+        <div class="container-fluid ptb20">
+            <div class="row" ng-repeat="logo in floorModule.config.logo">
+                <div class="col-md-12">
+                    <label class="module-config-item-children mlr0">
+                        <span class="radio" ng-class="{selected: setting.logoKey === logo.key}">
+                            <input type="radio"
+                                   ng-model="setting.logoKey"
+                                   ng-value="logo.key"/>
+                            <i></i>
+                        </span>
+                        <span ng-if="logo.key === 'default'">
+                            <span>默认LOGO组</span>
+                            <a class="link" ng-click="openSpecifyLogosModal()">更换LOGO组</a>
+                            <div class="logo-group logo-group-pre-1"></div>
+                        </span>
+                        <span ng-if="logo.key === 'custom'">
+                            <span>自定义上传LOGO组</span>
+                            <a class="link" ng-click="openCustomLogosModal()">编辑上传</a>
+                        </span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

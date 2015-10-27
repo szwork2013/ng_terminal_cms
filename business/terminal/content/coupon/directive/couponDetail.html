@@ -1,0 +1,42 @@
+<div class="coupon-detail-modal">
+    <h4 class="coupon-modal-tt">优惠详情页</h4>
+    <div class="coupon-modal-bd">
+        <p>
+            <span>优惠名称：</span>
+            <span ng-bind="vm.couponInfo.title"></span>
+        </p>
+        <p>
+            <span>所在商场：</span>
+            <span ng-bind="vm.mall.name"></span>
+        </p>
+        <p>
+            <span>店铺名称：</span>
+            <span ng-bind="vm.couponInfo.merchant_name"></span>
+        </p>
+        <p>
+            <span>优惠发布时间：</span>
+            <span ng-bind="vm.couponInfo.publish_time"></span>
+        </p>
+        <p>
+            <span>优惠时间：</span>
+            <span ng-bind="vm.couponInfo.start_time"></span>
+            --
+            <span ng-bind="vm.couponInfo.end_time"></span>
+        </p>
+        <p>
+            <span>优惠状态：</span>
+            <span ng-if="vm.couponInfo.status === 1">未发布</span>
+            <span ng-if="vm.couponInfo.status === 2">在线</span>
+            <span ng-if="vm.couponInfo.status === 3">已失效</span>
+            <span ng-if="vm.couponInfo.status === 4">已停用</span>
+        </p>
+        <p>
+            <span>发布人：</span>
+            <span ng-bind="vm.couponInfo.create_by"></span>
+        </p>
+        <p>
+            <span>优惠介绍：</span>
+            <span ng-bind="vm.couponInfo.introduction"></span>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,506 @@
+@gray: #ddd;
+@filterActiveBdColor: #B85D76;
+@blue: #4ab3fb;
+@filterTitle: #A2A2A2;
+
+@black1: #545454;
+@black2: #E0E0E0;
+@black3: #B4B4B4;
+@black4: #9A9A9A;
+@blackBg: #fff;
+
+@gray1: #C1C1C1;
+@gray2: @gray;
+@gray3: #D5D5D5;
+@gray4: #CFCFCF;
+@grayBg: #EEEEEE;
+
+@red1: #CA1733;
+@red2: #FDC0C7;
+@red3: #F4586B;
+@red4: #F33C52;
+@redBg: #F9D1D1;
+
+@yellow1: #B07A13;
+@yellow2: #FDE679;
+@yellow3: #F1C457;
+@yellow4: #EFB006;
+@yellowBg: #FDEAC2;
+
+@green1: #518801;
+@green2: #C7F56E;
+@green3: #99E25A;
+@green4: #71C922;
+@greenBg: #D1F2B3;
+
+@blue1: #004899;
+@blue2: #66AEFE;
+@blue3: #3E99FE;
+@blue4: #147CF0;
+@blueBg: #C0DFFE;
+
+@purple1: #5A20DC;
+@purple2: #C5ACFE;
+@purple3: #9B71FE;
+@purple4: #723AF0;
+@purpleBg: #BFBEFE;
+
+@brown1: #76502A;
+@brown2: #E6A362;
+@brown3: #C57422;
+@brown4: #945E28;
+@brownBg: #F0DFCF;
+
+@gold1: #E0CD94;
+@gold2: #F7F1E1;
+@gold3: #E7DEC3;
+@gold4: #F0E2B7;
+@goldBg: #FDF6DE;
+
+@colorful1: #E94C88;
+@colorful2: #F6D175;
+@colorful3: #80B241;
+@colorful4: #264A7E;
+@colorfulBg: #E8F8F9;
+
+.fz16 {
+    font-size: 16px;
+}
+
+.fz14 {
+    font-size: 14px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+.ml10{
+    margin-left: 10px;
+}
+
+.mb40 {
+    margin-bottom: 40px;
+}
+
+.box-sizing(@type: border-box) {
+    -webkit-box-sizing: @type;
+    -moz-box-sizing: @type;
+    box-sizing: @type;
+}
+
+.blue {
+    color: @blue;
+}
+
+.v-line {
+    &:before {
+        content: '';
+        display: inline-block;
+        width: 2px;
+        height: 14px;
+        margin-right: 10px;
+        vertical-align: middle;
+        background-color: @filterActiveBdColor;
+    }
+}
+
+.col253 {
+    &:nth-child(1) {
+        width: 216px;
+    }
+    &:nth-child(2) {
+        width: 494px;
+    }
+    &:nth-child(3) {
+        width: 310px;
+    }
+}
+
+.bd1 {
+    border: 1px solid @gray;
+}
+
+.bdtn {
+    border-top: none;
+}
+
+.direction{
+    display: inline-block;
+    width: 30px;
+    height: 40px;
+    padding: 2px;
+    border: 1px solid @gray;
+    vertical-align: middle;
+
+    & > span{
+        display: block;
+        background-color: @gray;
+        border-bottom: 1px solid #fff;
+        &:nth-child(1) {height: 20%;}
+        &:nth-child(2) {height: 30%;}
+        &:nth-child(3) {height: 50%; border-bottom: none;}
+    }
+
+    &.hDirection{
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        -ms-transform: rotate(-90deg);
+        -o-transform: rotate(-90deg);
+        transform: rotate(-90deg);
+    }
+}
+
+.filter-ctn{
+    font-size: 14px;
+    & > tbody > tr > td{
+        width: 50%;
+        padding: 0 !important;
+    }
+    .filter-ctn-inner{
+        width: 100%;
+    }
+
+    &   td {
+        position: relative;
+        vertical-align: top !important;
+    }
+
+    &  td > div{
+        overflow: hidden;
+        padding: 16px 20px;
+    }
+
+    &  td > div > span {
+        float: left;
+        width: 149px;
+        padding: 6px 0;
+        margin-right: 10px;
+        margin-bottom: 10px;
+
+        .bd1;
+        cursor: pointer;
+
+        &:nth-child(3n) {
+            margin-right: 0;
+        }
+        &.active {
+            outline: 2px solid @filterActiveBdColor;
+        }
+    }
+
+    &   h4{
+        padding: 6px;
+        font-size: 14px;
+        background-color: #F1F1F1;
+        text-align: left;
+        color:@filterTitle;
+        & > strong{
+            font-weight: normal;
+            color: #555;
+        }
+    }
+}
+
+.filter-tpl-ctn {
+    padding: 20px 0;
+    .filter-tpl-list {
+        & > li {
+            float: left;
+            width: 24%;
+            margin-right: 4% / 3;
+            margin-bottom: 20px;
+            .box-sizing;
+            & > div:first-child {
+                width: 100%;
+            }
+            & > div:last-child {
+                padding-top: 14px;
+                padding-bottom: 14px;
+                text-align: center;
+            }
+        }
+
+        & > li:nth-child(4n) {
+            margin-right: 0;
+        }
+    }
+}
+
+.tpl-name-label {
+
+    & > input {
+        width: 280px;
+        padding: 6px 10px;
+        border: 1px solid @gray;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        font-weight: normal;
+        font-size: 14px;
+    }
+
+    &:after {
+        content: '*';
+        color: red;
+        font-size: 16px;
+        vertical-align: middle;
+        margin-left: 10px;
+    }
+}
+
+.color-group {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border: 1px solid @gray;
+    padding: 2px;
+    vertical-align: middle;
+
+    & i {
+        display: block;
+        height: 100%;
+    }
+    & > span {
+        height: 100%;
+        padding: 1px;
+    }
+    & > span:first-child {
+        width: 40%;
+        float: left;
+    }
+    & > span:last-child {
+        width: 60%;
+        float: right;
+        & > span {
+            display: block;
+            border-bottom: 1px solid #fff;
+        }
+        & > span:nth-child(1) {
+            height: 20%;
+        }
+        & > span:nth-child(2) {
+            height: 30%;
+        }
+        & > span:nth-child(3) {
+            height: 50%;
+            border-bottom: none;
+        }
+    }
+}
+
+//黑白系
+.color-group-black {
+    & > span:first-child {
+        & > i {
+            background-color: @black1;
+        }
+    }
+    & > span:last-child {
+        & > span:nth-child(1) > i {
+            background-color: @black2;
+        }
+        & > span:nth-child(2) > i {
+            background-color: @black3;
+        }
+        & > span:nth-child(3) > i {
+            background-color: @black4;
+        }
+    }
+}
+
+
+//灰色系
+.color-group-gray {
+    & > span:first-child {
+        & > i {
+            background-color: @gray1;
+        }
+    }
+    & > span:last-child {
+        & > span:nth-child(1) > i {
+            background-color: @gray2;
+        }
+        & > span:nth-child(2) > i {
+            background-color: @gray3;
+        }
+        & > span:nth-child(3) > i {
+            background-color: @gray4;
+        }
+    }
+}
+
+//红色系
+.color-group-red {
+    & > span:first-child {
+        & > i {
+            background-color: @red1;
+        }
+    }
+    & > span:last-child {
+        & > span:nth-child(1) > i {
+            background-color: @red2;
+        }
+        & > span:nth-child(2) > i {
+            background-color: @red3;
+        }
+        & > span:nth-child(3) > i {
+            background-color: @red4;
+        }
+    }
+}
+
+//黄色系
+.color-group-yellow {
+    & > span:first-child {
+        & > i {
+            background-color: @yellow1;
+        }
+    }
+    & > span:last-child {
+        & > span:nth-child(1) > i {
+            background-color: @yellow2;
+        }
+        & > span:nth-child(2) > i {
+            background-color: @yellow3;
+        }
+        & > span:nth-child(3) > i {
+            background-color: @yellow4;
+        }
+    }
+}
+
+//绿色系
+.color-group-green {
+    & > span:first-child {
+        & > i {
+            background-color: @green1;
+        }
+    }
+    & > span:last-child {
+        & > span:nth-child(1) > i {
+            background-color: @green2;
+        }
+        & > span:nth-child(2) > i {
+            background-color: @green3;
+        }
+        & > span:nth-child(3) > i {
+            background-color: @green4;
+        }
+    }
+}
+
+//蓝色系
+.color-group-blue {
+    & > span:first-child {
+        & > i {
+            background-color: @blue1;
+        }
+    }
+    & > span:last-child {
+        & > span:nth-child(1) > i {
+            background-color: @blue2;
+        }
+        & > span:nth-child(2) > i {
+            background-color: @blue3;
+        }
+        & > span:nth-child(3) > i {
+            background-color: @blue4;
+        }
+    }
+}
+
+//紫色系
+.color-group-blue-purple {
+    & > span:first-child {
+        & > i {
+            background-color: @purple1;
+        }
+    }
+    & > span:last-child {
+        & > span:nth-child(1) > i {
+            background-color: @purple2;
+        }
+        & > span:nth-child(2) > i {
+            background-color: @purple3;
+        }
+        & > span:nth-child(3) > i {
+            background-color: @purple4;
+        }
+    }
+}
+
+//棕色系
+.color-group-brown {
+    & > span:first-child {
+        & > i {
+            background-color: @brown1;
+        }
+    }
+    & > span:last-child {
+        & > span:nth-child(1) > i {
+            background-color: @brown2;
+        }
+        & > span:nth-child(2) > i {
+            background-color: @brown3;
+        }
+        & > span:nth-child(3) > i {
+            background-color: @brown4;
+        }
+    }
+}
+
+//金银系
+.color-group-gold {
+    & > span:first-child {
+        & > i {
+            background-color: @gold1;
+        }
+    }
+    & > span:last-child {
+        & > span:nth-child(1) > i {
+            background-color: @gold2;
+        }
+        & > span:nth-child(2) > i {
+            background-color: @gold3;
+        }
+        & > span:nth-child(3) > i {
+            background-color: @gold4;
+        }
+    }
+}
+
+//花色系
+.color-group-colorful {
+    & > span:first-child {
+        & > i {
+            background-color: @colorful1;
+        }
+    }
+    & > span:last-child {
+        & > span:nth-child(1) > i {
+            background-color: @colorful2;
+        }
+        & > span:nth-child(2) > i {
+            background-color: @colorful3;
+        }
+        & > span:nth-child(3) > i {
+            background-color: @colorful4;
+        }
+    }
+}
+
+.color-item-black{background-color: @blackBg;}
+.color-item-gray{background-color: @grayBg;}
+.color-item-red{background-color: @redBg;}
+.color-item-yellow{background-color: @yellowBg;}
+.color-item-green{background-color: @greenBg;}
+.color-item-blue{background-color: @blueBg;}
+.color-item-blue-purple{background-color: @purpleBg;}
+.color-item-brown{background-color: @brownBg;}
+.color-item-gold{background-color: @goldBg;}
+.color-item-colorful{background-color: @colorfulBg;}
+
+
+
+
+

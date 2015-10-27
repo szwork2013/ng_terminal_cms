@@ -1,0 +1,27 @@
+<h4 class="modal-tt">自定义LOGO上传</h4>
+<div class="container-fluid fz14 plr40 ptb20">
+    <div class="row">
+        <p class="col-md-12">
+            请上传自定义LOGO，如有新增公共设施，请联系您的业务代表添加
+        </p>
+    </div>
+    <ul class="logo-upload-list">
+        <li ng-repeat="(publicFacilityKey, publicFacilityTxt) in vm.publicFacilities">
+            <div ng-bind="publicFacilityTxt"></div>
+            <div>
+                <div>
+                    <img src="" alt=""/>
+                </div>
+            </div>
+        </li>
+    </ul>
+    <div class="row">
+        <p class="col-md-12 red">
+            请上传完贵商场所有的配套公共设施LOGO后再提交
+        </p>
+    </div>
+</div>
+<div class="modal-ft">
+    <button class="cms-btn cms-btn-lg" type="button" ng-click="cancel()">取消</button>
+    <button class="cms-btn cms-btn-heavy-lg" type="button" ng-click="confirm()">确认</button>
+</div>

@@ -1,0 +1,38 @@
+<div ng-controller="CarouselDemoCtrl">
+	<div>
+		<carousel interval="myInterval" no-wrap="noWrapSlides" class="layout-ad1">
+			<slide ng-repeat="slide in slides" active="slide.active">
+				<div ng-switch on="slide.type">
+					<div ng-switch-when="image">
+						<img ng-src="{{slide.src}}" style="margin:auto;">
+					</div>
+					<div ng-switch-when="video">
+						这是视频
+						<!--<div load-module="in" ng-model="module"></div>-->
+					</div>
+				</div>
+
+				<!--<div class="carousel-caption">-->
+				<!--<h4>Slide {{$index}}</h4>-->
+				<!--<p>{{slide.text}}</p>-->
+				<!--</div>-->
+			</slide>
+		</carousel>
+	</div>
+	<!--<img src="img/ad1-pic1.png" alt=""/>-->
+	<!--<div class="row">-->
+	<!--<div class="col-md-6">-->
+	<!--<button type="button" class="btn btn-info" ng-click="addSlide()">Add Slide</button>-->
+	<!--<div class="checkbox">-->
+	<!--<label>-->
+	<!--<input type="checkbox" ng-model="noWrapSlides">-->
+	<!--Disable Slide Looping-->
+	<!--</label>-->
+	<!--</div>-->
+	<!--</div>-->
+	<!--<div class="col-md-6">-->
+	<!--Interval, in milliseconds: <input type="number" class="form-control" ng-model="myInterval">-->
+	<!--<br />Enter a negative number or 0 to stop the interval.-->
+	<!--</div>-->
+	<!--</div>-->
+</div>

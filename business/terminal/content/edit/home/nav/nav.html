@@ -1,0 +1,96 @@
+<div class="block-edit-bd">
+    <div class="module-config-item clearfix">
+        <span>数量选择</span>
+        <span>
+             <label class="module-config-item-children" ng-repeat="num in navModule.config.num">
+                <span class="radio" ng-class="{selected: setting.num === num}">
+                    <input type="radio"
+                           ng-model="setting.num"
+                           ng-value="num"/>
+                    <i></i>
+                </span>
+                 {{num}}
+             </label>
+         </span>
+    </div>
+    <!--<div class="module-config-item clearfix">-->
+    <!--<span>布局样式</span>-->
+    <!--<span>-->
+    <!--<label class="module-config-item-children" ng-repeat="show in navModule.config.show">-->
+    <!--<span class="radio" ng-class="{selected: navModule.setting.show === show}">-->
+    <!--<input type="radio"-->
+    <!--ng-model="navModule.setting.show"-->
+    <!--ng-value="show"/>-->
+    <!--<i></i>-->
+    <!--</span>-->
+    <!--{{show}}-->
+    <!--</label>-->
+    <!--</span>-->
+    <!--</div>-->
+</div>
+
+<div class="p20">
+    <h4 class="module-config-tt2">上传</h4>
+
+    <div class="module-fileUpload-bd clearfix">
+        <div class="nav-fileUpload-box">
+            <h4>
+                <span>类目背景图：jpg格式、尺寸520*580px、大小90KB内；</span>
+                <span>类目标题图：png格式、尺寸176*176px、大小90KB内；</span>
+            </h4>
+
+            <div ng-repeat="img in vm.imgs" class="clearfix">
+               <span class="pull-left mr10">
+                    <div class="upload-btn"
+                         ng-if="!img.bgUrl"
+                         ngf-select
+                         ngf-change="uploadBgImg($files, $index)"
+                         ngf-pattern="'image/jpeg'"
+                         ngf-max-height="580"
+                         ngf-max-width="520"
+                         ngf-max-size="'90KB'">
+                    </div>
+                   <div class="img-box" ng-if="img.bgUrl">
+                       <img width="100%" ng-src="{{img.bgUrl}}">
+                   </div>
+                   <p>背景图</p>
+               </span>
+
+               <span class="pull-left">
+                   <div class="upload-btn"
+                        ngf-select
+                        ng-if="!img.titleUrl"
+                        ngf-change="uploadTitleImg($files, $index)"
+                        ngf-pattern="'image/png'"
+                        ngf-max-height="176"
+                        ngf-max-width="176"
+                        ngf-max-size="'90KB'">
+                   </div>
+                   <div class="img-box" ng-if="img.titleUrl">
+                       <img width="100%" ng-src="{{img.titleUrl}}"/>
+                   </div>
+                   <p>标题图</p>
+               </span>
+
+                <div class="pt22">
+                    <label class="relateBtn">
+                        <span>
+                            <i class="icon icon-relate"></i>
+                        </span>
+                        <input type="button" value="请点击选择图片关联页面" ng-disabled="!isUploadComplete(img)"/>
+                    </label>
+
+                    <div class="sort-btn-ctn">
+                        <button ng-click="deleteUpload(img)" ng-disabled="!isUploadComplete(img)">删除</button>
+                        <button ng-click="sortUp(img, vm.imgs)" ng-disabled="!isUploadComplete(img)">向上</button>
+                        <button ng-click="sortDown(img, vm.imgs)" ng-disabled="!isUploadComplete(img)">向下</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="save-btn-group">
+    <a class="cms-btn cms-btn-heavy-lg" ui-sref="cms.terminal.content.list">返回列表页</a>
+    <a class="cms-btn cms-btn-heavy-lg" ng-click="save()">确认保存</a>
+</div>

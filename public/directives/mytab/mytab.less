@@ -1,0 +1,41 @@
+/**
+ * @file tab样式
+ * @author zhaoran
+ * @date 2015-06-08
+ */
+
+@import "/public/styles/mixin.less";
+
+.w-mytab{
+    height: 30px;
+    border-bottom: 1px solid @site-main-color;
+
+    a{
+        display: block;
+        position: relative;
+        float: left;
+        margin-right: -1px;
+
+        width: 99px;
+
+        text-align: center;
+        line-height: 28px;
+        border: 1px solid #ddd;
+        border-bottom: none;
+
+
+        &.active{
+
+            width: 100px;
+            // margin-left: -1px;
+            // 
+            z-index: 1;
+
+            color: #fff;
+            border-color: @site-main-color;
+            border-top-left-radius: 2px;
+            border-top-right-radius: 2px;
+            background: @site-main-color;
+        }
+    }
+}

@@ -1,0 +1,84 @@
+<div class="mb10">
+    <button class="cms-btn cms-btn-heavy-lg" ng-click="createAndEditCoupon()">新建优惠</button>
+</div>
+<form name="couponFilterForm" class="coupon-filter-form clearfix mb10" novalidate>
+    <div>
+        <label for="couponNameFilter">优惠名称</label>
+        <input id="couponNameFilter" class="w200" ng-model="vm.filter.title" type="text"/>
+    </div>
+    <div>
+        <label for="couponReleaseUserFilter">发布人</label>
+        <input id="couponReleaseUserFilter" class="w200" ng-model="vm.filter.publisher" type="text"/>
+    </div>
+    <div>
+        <label>创建时间</label>
+        <span>
+            <input id="couponReleaseTimeFilter" type="text"/>
+            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+        </span>
+    </div>
+    <div>
+        <label>优惠时间</label>
+        <span class="w300">
+            <input id="couponRangeTimeFilter" type="text"/>
+            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+        </span>
+    </div>
+    <div>
+        <button class="cms-btn cms-btn-heavy" ng-click="queryCoupon()">查询</button>
+    </div>
+</form>
+<p class="mb10">查询结果：总共<span ng-bind="vm.couponList.length"></span>条。</p>
+<div>
+    <div class="w-mytab">
+        <a ng-repeat="couponTab in couponTabs"
+           ng-click="couponTabClickHandler(couponTab)"
+           ng-class="{active: vm.filter.status === couponTab.status}">{{couponTab.text}}</a>
+    </div>
+    <table class="table table-bordered coupon-table">
+        <thead>
+        <tr>
+            <th>优惠名称</th>
+            <th>店铺</th>
+            <th>发布时间</th>
+            <th>优惠时间</th>
+            <th>发布人</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="coupon in vm.couponList">
+            <td>
+                <a ng-bind="coupon.title" ng-click="couponDetail(coupon)"></a>
+            </td>
+            <td ng-bind="coupon.merchant_name"></td>
+            <td>
+                <span ng-bind="coupon.publish_time"></span>
+            </td>
+            <td>
+                <p ng-bind="coupon.start_time"></p>
+                <p ng-bind="coupon.end_time"></p>
+            </td>
+            <td ng-bind="coupon.create_by"></td>
+            <td>
+                <span ng-if="coupon.status === 1">未发布</span>
+                <span ng-if="coupon.status === 2">在线</span>
+                <span ng-if="coupon.status === 3">已失效</span>
+                <span ng-if="coupon.status === 4">已停用</span>
+            </td>
+            <td>
+                <a ng-click="editCoupon(coupon)">编辑</a>
+                <a ng-click="stopCoupon(coupon)" ng-if="coupon.status === 1 || coupon.status === 2">停用</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<pagination total-items="vm.total"
+            ng-model="vm.currentPage"
+            items-per-page="vm.pageSize"
+            previous-text="上一页"
+            next-text="下一页"
+            ng-change="pageChangeHandler()">
+</pagination>

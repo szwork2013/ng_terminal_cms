@@ -1,0 +1,1838 @@
+.demo {
+  -webkit-transform-origin:0 0;
+  width: 1020px;
+  -webkit-transform: scale(0.5);
+  &-in {
+    width: 1040px;
+    margin: 0 auto;
+  }
+}
+
+// func1
+.layout-func1 {
+  // theme
+  .layout-bg-color1 {
+    .theme-blue-purple & {
+      background-color: #4c4c77;
+    }
+    .theme-orange & {
+      background-color: rgba(188, 81, 3, 0.5);
+    }
+  }
+  .layout-bg-color2 {
+    .theme-blue-purple & {
+      background-color: #457dc4;
+    }
+    .theme-orange & {
+      background-color: rgba(188, 81, 3, 0.5);
+    }
+  }
+  .layout-bg-color3 {
+    .theme-blue-purple & {
+      background-color: #ea4c89;
+    }
+    .theme-orange & {
+      background-color: rgba(188, 81, 3, 0.5);
+    }
+  }
+  .layout-bg-color4 {
+    .theme-blue-purple & {
+      background-color: #3567a6;
+    }
+    .theme-orange & {
+      background-color: rgba(188, 81, 3, 0.5);
+    }
+  }
+  .layout-bg-color5 {
+    .theme-blue-purple & {
+      background-color: #d84040;
+    }
+    .theme-orange & {
+      background-color: rgba(188, 81, 3, 0.5);
+    }
+  }
+  .layout-bg-color6 {
+    .theme-blue-purple & {
+      background-color: #4b8ec5;
+    }
+    .theme-orange & {
+      background-color: rgba(188, 81, 3, 0.5);
+    }
+  }
+  .layout-bg-color7 {
+    .theme-blue-purple & {
+      background-color: #264a7e;
+    }
+    .theme-orange & {
+      background-color: rgba(188, 81, 3, 0.5);
+    }
+  }
+  // common
+  .layout-show {
+    height: 520px;
+    position: relative;
+    overflow: hidden;
+    border: solid #000;
+    border-width: 1px 0;
+    .layout-boxs {
+      .layout-box {
+        float: left;
+        position: relative;
+        .layout-slider {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+  .layout-center(@width, @margin, @margin-top) {
+    .layout-logo {
+      width: @width;
+      height: @width;
+      margin: @margin;
+    }
+    .layout-name {
+      text-align: center;
+      .layout-cn {
+        font-size: 24px;
+        line-height: 25px;
+        color: #fff;
+      }
+      .layout-en {
+        margin-top: @margin-top;
+        text-align: center;
+        font-size: 14px;
+        color: #fff;
+      }
+    }
+  }
+  .layout-right-bottom(@width, @gap) {
+    .layout-logo {
+      width: @width;
+      height: @width;
+      margin: @gap 0 0 @gap;
+    }
+    .layout-name {
+      position: absolute;
+      text-align: right;
+      bottom: @gap;
+      right: @gap;
+      .layout-cn {
+        font-size: 24px;
+        line-height: 25px;
+        color: #fff;
+      }
+      .layout-en {
+        margin-top: 10px;
+        text-align: center;
+        font-size: 14px;
+        color: #fff;
+      }
+    }
+  }
+  .layout-set-qrcode(@width) {
+    .layout-qrcode {
+      position: absolute;
+      width: @width;
+      height: @width;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+  }
+  .layout-h4-v4 {
+    width: 520px;
+    height: 520px;
+    .layout-right-bottom(160px, 30px);
+    .layout-set-qrcode(460px);
+    .slider {
+      width: 520px;
+      height: 520px;
+      .slide {
+        width: 520px;
+        height: 520px;
+      }
+    }
+  }
+  .layout-h4-v2 {
+    width: 520px;
+    height: 260px;
+    .layout-right-bottom(64px, 30px);
+    .layout-set-qrcode(240px);
+    .slider {
+      width: 520px;
+      height: 260px;
+      .slide {
+        width: 260px;
+        height: 260px;
+        display: block !important;
+      }
+    }
+  }
+  .layout-h2-v4 {
+    width: 260px;
+    height: 520px;
+    .layout-center(160px, 132px 50px 40px, 10px);
+    .layout-set-qrcode(240px);
+    .slider {
+      width: 260px;
+      height: 520px;
+      .slide {
+        width: 260px;
+        height: 260px;
+        display: block !important;
+      }
+    }
+  }
+  .layout-h2-v2 {
+    width: 260px;
+    height: 260px;
+    .layout-right-bottom(64px, 30px);
+    .layout-set-qrcode(240px);
+    .slider {
+      width: 260px;
+      height: 260px;
+      .slide {
+        width: 260px;
+        height: 260px;
+      }
+    }
+  }
+  .layout-h2-v1 {
+    width: 260px;
+    height: 130px;
+    .layout-right-bottom(60px, 10px);
+    .layout-set-qrcode(120px);
+    .slider {
+      width: 260px;
+      height: 130px;
+      .slide {
+        width: 130px;
+        height: 130px;
+        display: block !important;
+      }
+    }
+  }
+  .layout-h1-v2 {
+    width: 130px;
+    height: 260px;
+    .layout-center(60px, 50px 35px 40px, 5px);
+    .layout-set-qrcode(120px);
+    .slider {
+      width: 130px;
+      height: 260px;
+      .slide {
+        width: 130px;
+        height: 130px;
+        display: block !important;
+      }
+    }
+  }
+  .layout-h1-v1 {
+    width: 130px;
+    height: 130px;
+    .layout-center(60px, 10px 35px 0, 5px);
+    .layout-set-qrcode(120px);
+    .slider {
+      width: 130px;
+      height: 130px;
+      .slide {
+        width: 130px;
+        height: 130px;
+      }
+    }
+  }
+
+  // 显示3个时候
+  &-3 {
+    // 第1种展现形式
+    .layout-show1 {
+      .layout-box:nth-child(1) {
+        .layout-h2-v4;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h4-v4;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v4;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #43b7b3;
+        }
+      }
+    }
+    // 第2种展现形式
+    .layout-show2 {
+      .layout-box:nth-child(1) {
+        .layout-h2-v4;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #482d2a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v4;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #8ab946;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h4-v4;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+    }
+  }
+
+  // 显示4个时候
+  &-4 {
+    // 第1种展现形式
+    .layout-show1 {
+      .layout-box:nth-child(1) {
+        .layout-h4-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        position: absolute;
+        top: 260px;
+        .layout-h4-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v4;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #43b7b3;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h2-v4;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+    }
+    // 第2种展现形式
+    .layout-show2 {
+      .layout-box:nth-child(1) {
+        .layout-h4-v4;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h4-v2;
+        .layout-bg-color6;
+        .theme-colorful & {
+          background-color: #49b7b2;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #f6b83d;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #8ab946;
+        }
+      }
+    }
+  }
+
+  // 显示5个时候
+  &-5 {
+    .layout-show1 {
+      .layout-box:nth-child(1) {
+        .layout-h2-v4;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h4-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v2;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h4-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #89bb3d;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #43b7b3;
+        }
+      }
+    }
+    .layout-show2 {
+      .layout-box:nth-child(1) {
+        .layout-h4-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #f6b83d;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v4;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #482d2a;
+        }
+      }
+      .layout-box:nth-child(4) {
+        position: absolute;
+        top: 260px;
+        left: 0;
+        .layout-h4-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #8ab946;
+        }
+      }
+      .layout-box:nth-child(5) {
+        position: absolute;
+        top: 260px;
+        left: 520px;
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #49b7b2;
+        }
+      }
+    }
+  }
+
+  // 显示6个时候
+  &-6 {
+    .layout-show1 {
+      .layout-box:nth-child(1) {
+        .layout-h4-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #43b7b3;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h4-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #89bb3d;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #009d9b;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+    }
+    .layout-show2 {
+      .layout-box:nth-child(1) {
+        .layout-h4-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #482d2a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #f6b83d;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #49b7b2;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #8ab946;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h4-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #179d9a;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+    }
+  }
+
+  // 显示7个时候
+  &-7 {
+    .layout-show1 {
+      .layout-box:nth-child(1) {
+        .layout-h4-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #89bb3d;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h2-v2;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #009d9b;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #008f81;
+        }
+      }
+    }
+    .layout-show2 {
+      .layout-box:nth-child(1) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #8ab946;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #f6b83d;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #179d9a;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h2-v2;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #179d9a;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h4-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #482d2a;
+        }
+      }
+    }
+  }
+
+  // 显示8个时候
+  &-8 {
+    .layout-show1 {
+      .layout-box:nth-child(1) {
+        .layout-h4-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h1-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #624f59;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h1-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #43b7b3;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #43b7b3;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h2-v2;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h2-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+      .layout-box:nth-child(8) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #89bb3d;
+        }
+      }
+    }
+    .layout-show2 {
+      .layout-box:nth-child(1) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h4-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #8ab946;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #f6b83d;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #482d2a;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h2-v2;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e63da6;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #179d9a;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h1-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(8) {
+        .layout-h1-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #49b7b2;
+        }
+      }
+    }
+  }
+
+  // 显示9个时候
+  &-9 {
+    .layout-show1 {
+      .layout-box:nth-child(1) {
+        .layout-h4-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #009d9b;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h2-v1;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h2-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e837a7;
+        }
+      }
+      .layout-box:nth-child(8) {
+        .layout-h2-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #5b4e58;
+        }
+      }
+      .layout-box:nth-child(9) {
+        .layout-h2-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #43b7b3;
+        }
+      }
+    }
+    .layout-show2 {
+      .layout-box:nth-child(1) {
+        .layout-h4-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #482d2a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e63da6;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #49b7b2;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h2-v1;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #239590;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h2-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #f6b83d;
+        }
+      }
+      .layout-box:nth-child(8) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #635059;
+        }
+      }
+      .layout-box:nth-child(9) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #8ab946;
+        }
+      }
+    }
+  }
+
+  // 显示10个时候
+  &-10 {
+    .layout-show1 {
+      .layout-box:nth-child(1) {
+        .layout-h2-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #43b7b3;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h2-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h2-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #635059;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h2-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #89bb3d;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #009d9b;
+        }
+      }
+      .layout-box:nth-child(8) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(9) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(10) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #199591;
+        }
+      }
+    }
+    .layout-show2 {
+      .layout-box:nth-child(1) {
+        .layout-h2-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #179d9a;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #482d2a;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h2-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e63da6;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h2-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #179d9a;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #634f59;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #e63da6;
+        }
+      }
+      .layout-box:nth-child(8) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #f6b83d;
+        }
+      }
+      .layout-box:nth-child(9) {
+        .layout-h2-v1;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #3567a6;
+        }
+      }
+      .layout-box:nth-child(10) {
+        .layout-h2-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #4a4c79;
+        }
+      }
+    }
+  }
+
+  // 显示11个时候
+  &-11 {
+    .layout-show1 {
+      .layout-box:nth-child(1) {
+        .layout-h2-v4;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e837a7;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h2-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #89bb3d;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h2-v1;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #009d9b;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #634f59;
+        }
+      }
+      .layout-box:nth-child(8) {
+        .layout-h1-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e837a7;
+        }
+      }
+      .layout-box:nth-child(9) {
+        .layout-h1-v1;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+      .layout-box:nth-child(10) {
+        .layout-h1-v1;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #009d9b;
+        }
+      }
+      .layout-box:nth-child(11) {
+        .layout-h1-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+    }
+    .layout-show2 {
+      .layout-box:nth-child(1) {
+        .layout-h2-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #179d9a;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #e63da6;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h1-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h1-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #8ab946;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h1-v1;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #f6b83d;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h1-v1;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #e63da6;
+        }
+      }
+      .layout-box:nth-child(8) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #482d2a;
+        }
+      }
+      .layout-box:nth-child(9) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #8ab946;
+        }
+      }
+      .layout-box:nth-child(10) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #f6b83d;
+        }
+      }
+      .layout-box:nth-child(11) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #179d9a;
+        }
+      }
+    }
+  }
+
+  // 显示12个时候
+  &-12 {
+    .layout-show1 {
+      .layout-box:nth-child(1) {
+        .layout-h2-v4;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h4-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h1-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #89bb3d;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h1-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #199591;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h1-v1;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h1-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #43b7b3;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(8) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #009d9b;
+        }
+      }
+      .layout-box:nth-child(9) {
+        .layout-h1-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e837a7;
+        }
+      }
+      .layout-box:nth-child(10) {
+        .layout-h1-v1;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #635059;
+        }
+      }
+      .layout-box:nth-child(11) {
+        .layout-h1-v1;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #635059;
+        }
+      }
+      .layout-box:nth-child(12) {
+        .layout-h1-v1;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+    }
+    .layout-show2 {
+      .layout-box:nth-child(1) {
+        .layout-h4-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #8ab946;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #239590;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h1-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e63da6;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h1-v1;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #239590;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h1-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #f6b83d;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h1-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #49b7b2;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h4-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(8) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #8ab946;
+        }
+      }
+      .layout-box:nth-child(9) {
+        .layout-h1-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e63da6;
+        }
+      }
+      .layout-box:nth-child(10) {
+        .layout-h1-v1;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #239590;
+        }
+      }
+      .layout-box:nth-child(11) {
+        .layout-h1-v1;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #239590;
+        }
+      }
+      .layout-box:nth-child(12) {
+        .layout-h1-v1;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+    }
+  }
+
+  // 显示13个时候
+  &-13 {
+    .layout-show1 {
+      .layout-box:nth-child(1) {
+        .layout-h1-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e837a7;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h1-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h1-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #009d9b;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h1-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h4-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #009d9b;
+        }
+      }
+      .layout-box:nth-child(6) {
+        position: absolute;
+        top: 130px;
+        left: 0;
+        .layout-h1-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(7) {
+        position: absolute;
+        top: 130px;
+        left: 130px;
+        .layout-h1-v1;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #e837a7;
+        }
+      }
+      .layout-box:nth-child(8) {
+        position: absolute;
+        top: 130px;
+        left: 260px;
+        .layout-h1-v1;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #43b7b3;
+        }
+      }
+      .layout-box:nth-child(9) {
+        position: absolute;
+        top: 130px;
+        left: 390px;
+        .layout-h1-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(10) {
+        .layout-h2-v2;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #89bb3d;
+        }
+      }
+      .layout-box:nth-child(11) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #009d9b;
+        }
+      }
+      .layout-box:nth-child(12) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(13) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+    }
+    .layout-show2 {
+      .layout-box:nth-child(1) {
+        .layout-h4-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #179d9a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #49b7b2;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h1-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h1-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e63da6;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h1-v1;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #f6b83d;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h1-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h2-v2;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(8) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #482d2a;
+        }
+      }
+      .layout-box:nth-child(9) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #8ab946;
+        }
+      }
+      .layout-box:nth-child(10) {
+        .layout-h1-v1;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #179d9a;
+        }
+      }
+      .layout-box:nth-child(11) {
+        .layout-h1-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #49b7b2;
+        }
+      }
+      .layout-box:nth-child(12) {
+        .layout-h1-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(13) {
+        .layout-h1-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #f6b83d;
+        }
+      }
+    }
+  }
+
+  // 显示14个时候
+  &-14 {
+    .layout-show1 {
+      .layout-box:nth-child(1) {
+        .layout-h2-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e837a7;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #89bb3d;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #009d9b;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h1-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #43b7b3;
+        }
+      }
+      .layout-box:nth-child(8) {
+        .layout-h1-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #635059;
+        }
+      }
+      .layout-box:nth-child(9) {
+        .layout-h1-v1;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(10) {
+        .layout-h1-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e837a7;
+        }
+      }
+      .layout-box:nth-child(11) {
+        .layout-h1-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #492d2a;
+        }
+      }
+      .layout-box:nth-child(12) {
+        .layout-h1-v1;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #da1f6a;
+        }
+      }
+      .layout-box:nth-child(13) {
+        .layout-h1-v1;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #009d9b;
+        }
+      }
+      .layout-box:nth-child(14) {
+        .layout-h1-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #43b7b3;
+        }
+      }
+    }
+    .layout-show2 {
+      .layout-box:nth-child(1) {
+        .layout-h2-v2;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #482d2a;
+        }
+      }
+      .layout-box:nth-child(2) {
+        .layout-h2-v2;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e63da6;
+        }
+      }
+      .layout-box:nth-child(3) {
+        .layout-h1-v1;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #482d2a;
+        }
+      }
+      .layout-box:nth-child(4) {
+        .layout-h1-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(5) {
+        .layout-h1-v1;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #f6b83d;
+        }
+      }
+      .layout-box:nth-child(6) {
+        .layout-h1-v1;
+        .layout-bg-color3;
+        .theme-colorful & {
+          background-color: #e63da6;
+        }
+      }
+      .layout-box:nth-child(7) {
+        .layout-h1-v1;
+        .layout-bg-color1;
+        .theme-colorful & {
+          background-color: #49b7b2;
+        }
+      }
+      .layout-box:nth-child(8) {
+        .layout-h1-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #635059;
+        }
+      }
+      .layout-box:nth-child(9) {
+        .layout-h1-v1;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #179d9a;
+        }
+      }
+      .layout-box:nth-child(10) {
+        .layout-h1-v1;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #49b7b2;
+        }
+      }
+      .layout-box:nth-child(11) {
+        .layout-h2-v2;
+        .layout-bg-color2;
+        .theme-colorful & {
+          background-color: #f8b92b;
+        }
+      }
+      .layout-box:nth-child(12) {
+        .layout-h2-v2;
+        .layout-bg-color4;
+        .theme-colorful & {
+          background-color: #179d9a;
+        }
+      }
+      .layout-box:nth-child(13) {
+        .layout-h2-v2;
+        .layout-bg-color5;
+        .theme-colorful & {
+          background-color: #d7256b;
+        }
+      }
+      .layout-box:nth-child(14) {
+        .layout-h2-v2;
+        .layout-bg-color7;
+        .theme-colorful & {
+          background-color: #8ab946;
+        }
+      }
+    }
+  }
+  
+  // 后台显示展现形式
+  &-show {
+    width: 70px;
+    height: 38px;
+    display: inline-block;
+  }
+  .loop-show(@n, @dataIndex: 3) when (@dataIndex =< @n) {
+    &-show@{dataIndex} {
+      .loop-num(@n, @i: 1) when(@i =< @n) {
+        &-@{i} {
+          background-image: url('img/show/@{dataIndex}-@{i}.png'); // %("", @dataIndex, @i);
+        }
+        .loop-num(@n, (@i + 1));
+      }
+      .loop-num(2);
+    }
+    .loop-show(@n, (@dataIndex + 1));
+  }
+  .loop-show(14);
+}
+
+// icon
+.layout {
+  @array: activity 4, brand 4, coupon 3, floor 4, member 3, merchant 3, parking 3, signin 5;
+  .loop-array2(@array, @iterator:1) when(@iterator <= length(@array)) {
+    @name: extract(extract(@array, @iterator),1);
+    @value: extract(extract(@array, @iterator),2);
+    &-logo-@{name} {
+      // background-color: extract(extract(@array, @iterator),2);
+      .loop-array(@n, @i: 1) when (@i =< @n) {
+        &-@{i} {
+          background-image: url('img/svg/@{name}-@{i}.svg');
+        }
+      }
+      .loop-array(@value);
+    }
+    .loop-array2(@array, (@iterator + 1));
+  }
+  .loop-array2(@array);
+}

@@ -1,0 +1,176 @@
+@modalTitleBgColor: #333333;
+@modalFontColor: #808080;
+@white: #fff;
+@borderColor: rgb(169, 169, 169);
+.fz16{font-size:16px;}
+.fz14{font-size:14px;}
+.fz12{font-size:12px;}
+.w300{width: 300px !important;}
+.w200{width: 200px;}
+.p10{padding: 10px;}
+.pl104{padding-left: 104px;}
+p{
+    margin: 0;
+}
+
+.modal-dialog.modal-wp700{
+    width: 700px;
+}
+.modal-dialog.modal-wp400{
+    width: 500px;
+}
+.coupon-modal-tt{
+    padding: 10px 20px;
+    color: @white;
+    background-color: @modalTitleBgColor;
+    .fz16;
+}
+
+.coupon-modal-bd{
+    padding: 20px;
+    color: @modalFontColor;
+    .fz14;
+
+    &   label{
+        width: 90px;
+        margin-right: 10px;
+        text-align: right;
+        font-weight: normal;
+    }
+    & > form > div{
+        margin-bottom: 10px;
+
+        & > span:not(.notice){
+            position: relative;
+            width: 200px;
+            display: inline-block;
+            vertical-align: middle;
+
+            & > input{
+                width: 100%;
+                cursor: pointer;
+            }
+        }
+
+        input[type='button'] {
+            background-color: @white;
+            text-align: left;
+            border: 1px solid @borderColor;
+        }
+
+        .glyphicon{
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            cursor: pointer;
+        }
+
+        &:last-child{
+            margin-bottom: 0;
+        }
+        
+        & > textarea{
+            padding: 6px;
+            width: 422px;
+            height: 100px;
+            vertical-align: text-top;
+            resize: none;
+        }
+        &   input,
+        & > select{
+            padding: 4px 6px;
+        }
+    }
+}
+
+.form-error{
+    color: red;
+}
+
+.coupon-modal-ft{
+    padding: 20px;
+    text-align: center;
+}
+
+.coupon-delete-p{
+    text-align: center;
+    padding: 40px 0;
+}
+
+.modal-vcenter{
+    .modal-dialog{
+        margin-top: 200px;
+    }
+}
+
+.coupon-filter-form{
+    &   label{
+        font-weight: normal;
+    }
+    & > div{
+        margin-bottom: 10px;
+
+        & > label{
+            width: 60px;
+        }
+
+        & > span{
+            position: relative;
+            display: inline-block;
+            width: 200px;
+
+            & > input{
+                width: 100%;
+                cursor: pointer;
+            }
+        }
+    }
+
+    &   input{
+        padding: 4px 6px;
+    }
+
+    .glyphicon{
+        position: absolute;
+        top: 8px;
+        right: 10px;
+        cursor: pointer;
+    }
+}
+
+.shop-list-drop-menu{
+    z-index: 100;
+    position: absolute;
+    width: 100%;
+    border: 1px solid @borderColor;
+    background-color: @white;
+    .shop-query-box{
+        padding: 10px;
+        border-bottom: 1px solid @borderColor;
+
+        & > input{
+            border: 1px solid @borderColor;
+        }
+    }
+
+    & > ul {
+        max-height: 320px;
+        overflow: auto;
+
+        & > li {
+            padding: 6px 20px;
+            cursor: pointer;
+            &:hover{
+                background-color: #f2f2f2;
+            }
+        }
+    }
+}
+
+.coupon-detail-modal{
+    .coupon-modal-bd{
+        &   p{
+            margin-bottom: 10px;
+        }
+    }
+}

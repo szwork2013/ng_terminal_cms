@@ -1,0 +1,14 @@
+<div ng-switch on="template.Type">
+    <ul class="list-group" style="width:99%;margin:20px auto;" ng-switch-when="1">
+        <li class="list-group-item" ng-repeat="option in template.Content"><label for="{{option.Id}}"><input type="radio" id="{{option.Id}}" name="{{option.Name}}" value="{{option.Value}}" />{{option.Text}}</label><>
+    </ul>
+    <div ng-repeat="input in template.Content" style="height:40px;margin:0 auto;width:90%;" ng-switch-when="2">
+        <input class="form-control" id="{{input.Id}}" type="text" placeholder="{{input.Text}}" autocomplete="off" />
+    </div>
+    <div ng-repeat="number in template.Content" style="height:40px;margin:0 auto;width:90%;" ng-switch-when="3">
+        <input class="form-control" id="{{number.Id}}" type="number" placeholder="{{number.Text}}" autocomplete="off" min="{{number.Min}}" max="{{number.Max}}" step="{{number.Step}}" />
+    </div>
+    <div ng-repeat="date in template.Content" style="height:40px;margin:0 auto;width:90%;" ng-switch-when="4">
+        <input class="form-control" id="{{date.Id}}" type="date" placeholder="{{date.Text}}" autocomplete="off" />
+    </div>
+</div>

@@ -1,0 +1,14 @@
+{
+  "num": "2",
+  "data": [
+    {
+      "bgUrl": "http://dev2.rongyi.com/upload/front/1/20150925170932_2-play.jpg",
+      "titleUrl": "http://dev2.rongyi.com/upload/front/1/20150925170943_play1.png"
+    },
+    {
+      "bgUrl": "http://dev2.rongyi.com/upload/front/1/20150925170957_2-food.jpg",
+      "titleUrl": "http://dev2.rongyi.com/upload/front/1/20150925170948_food1.png"
+    }
+  ],
+  "name": "nav2"
+}

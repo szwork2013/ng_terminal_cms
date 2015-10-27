@@ -1,0 +1,133 @@
+<div class="block-edit-bd">
+    <div class="module-config-item clearfix">
+        <span>样式</span>
+         <span>
+             <label class="module-config-item-children " ng-repeat="show in brandModule.config.show">
+                <span class="radio" ng-class="{selected: setting.show === show}">
+                    <input type="radio"
+                           ng-model="setting.show"
+                           ng-value="show"/>
+                    <i></i>
+                </span>
+
+                 <div class="layout-show layout-{{vm.moduleName}}-show layout-{{vm.moduleName}}-show-{{$index + 1}}"></div>
+             </label>
+         </span>
+    </div>
+</div>
+<div class="p20 dashed">
+    <h4 class="module-config-tt2">类目排序</h4>
+
+    <div class="module-fileUpload-bd clearfix" ng-repeat="shopCatg in setting.shopCatgs">
+        <span>类目{{$index + 1}}</span>
+        <span>
+            <div>
+                <h4 class="clearfix h48">
+                    <strong class="pull-left hp100 lh36 fz14 slideArrow"
+                            ng-class="{slideDown: shopCatg.isExpand}"
+                            ng-click="slideToggle(shopCatg)"
+                            ng-bind="shopCatg.name"></strong>
+                    <span class="sort-btn-ctn pull-right">
+                        <button class="default-catg-btn"
+                                ng-class="{selected: shopCatg.isDefault}"
+                                ng-click="setDefaultShopCatg(shopCatg)">
+                            <i><i></i></i>
+                            默认展示
+                        </button>
+                        <button ng-click="sortUp(shopCatg)" ng-disabled="$first">向上</button>
+                        <button ng-click="sortDown(shopCatg)" ng-disabled="$last">向下</button>
+                    </span>
+                </h4>
+                <div ng-show="shopCatg.isExpand" class="fz14">
+                    <p>推荐店铺</p>
+                    <ul class="stick-shop-list">
+                        <li ng-repeat="stickShop in shopCatg.stickShops">
+                            <span class="mr10">推荐{{$index + 1}}</span>
+                            <input type="button"
+                                   class="stick-shop-btn"
+                                   ng-click="addStickShop(shopCatg, $index)"
+                                   ng-value="stickShop.name || '请选择需要推荐的店铺，不选则默认为无推荐'"/>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+<div class="p20">
+    <h4 class="module-config-tt3">店铺排序</h4>
+
+    <div class="module-config-item clearfix">
+        <span>排序规则</span>
+        <span>
+             <label class="module-config-item-children" ng-repeat="(sortKey, sortTxt) in brandModule.config.sort">
+                <span class="radio" ng-class="{selected: setting.sort === sortKey}">
+                    <input type="radio"
+                           ng-model="setting.sort"
+                           ng-value="sortKey"/>
+                    <i></i>
+                </span>
+                 <span ng-bind="sortTxt"></span>
+             </label>
+         </span>
+    </div>
+</div>
+<div class="save-btn-group">
+    <a class="cms-btn cms-btn-heavy-lg" ui-sref="cms.terminal.content.list">返回列表页</a>
+    <a class="cms-btn cms-btn-heavy-lg" ng-click="save()">确认保存</a>
+</div>
+<div class="stick-shop-modal-layer" ng-show="vm.showModal">
+    <div class="stick-shop-modal">
+        <h4 class="stick-shop-modal-hd">
+            推荐店铺
+            <a class="stick-shop-modal-close" ng-click="closeShopListModal()"></a>
+        </h4>
+        <div class="stick-shop-modal-bd">
+            <div class="stick-shop-srh">
+                <label>
+                    店铺名
+                    <input type="search" placeholder="请输入店铺名" ng-model="shopQuery"/>
+                </label>
+                <a class="cms-btn cms-btn-heavy" ng-click="queryShop(shopQuery)">查询</a>
+            </div>
+            <table class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>操作</th>
+                        <th>店铺名称</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="shop in vm.shopList">
+                        <td>
+                            <label>
+                                <span class="radio" ng-class="{disabled: shop.isSelected, selected: shop.id === vm.selectedShop.id}">
+                                    <input type="radio"
+                                           ng-model="vm.selectedShop"
+                                           ng-disabled="shop.isSelected"
+                                           ng-value="shop"/>
+                                    <i></i>
+                                </span>
+                            </label>
+                        </td>
+                        <td ng-bind="shop.name"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="clearfix mb10">
+                <pagination total-items="pagination.total"
+                            ng-model="pagination.currentPage"
+                            items-per-page="pagination.pageSize"
+                            previous-text="上一页"
+                            next-text="下一页"
+                            ng-change="pageChangeHandler()">
+                </pagination>
+            </div>
+
+            <div class="save-btn-group">
+                <a class="cms-btn cms-btn-heavy-lg" ng-click="closeShopListModal()">返回</a>
+                <a class="cms-btn cms-btn-heavy-lg" ng-click="saveStickShop()">确认</a>
+            </div>
+        </div>
+    </div>
+</div>

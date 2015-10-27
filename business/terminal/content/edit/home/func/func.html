@@ -1,0 +1,208 @@
+<div class="block-edit-bd">
+    <div class="module-config-item clearfix">
+        <span>数量选择</span>
+        <span>
+             <label class="module-config-item-children"
+                    ng-class="{disabled: num < vm.funcSelectedCount}"
+                    ng-repeat="num in funcModule.config.num">
+                <span class="radio"
+                      ng-class="{selected: setting.num === num}">
+                    <input type="radio"
+                           ng-model="setting.num"
+                           ng-disabled="num < vm.funcSelectedCount"
+                           ng-value="num"/>
+                    <i></i>
+                </span>
+                 {{num}}
+             </label>
+         </span>
+    </div>
+    <div class="module-config-item clearfix">
+        <span>功能选择</span>
+        <span>
+            <span class="visible-lg-block pdlr20 fz14">
+                全部
+                <strong ng-bind="vm.funcCount"></strong>
+                已选择
+                <strong class="red" ng-bind="vm.funcSelectedCount"></strong>
+                未选择
+                <strong ng-bind="vm.funcCount - vm.funcSelectedCount"></strong>
+            </span>
+            <label class="module-config-item-children"
+                   ng-class="{disabled: !type.isChecked && vm.funcSelectedCount === setting.num}"
+                   ng-repeat="type in funcModule.config.type">
+                <span class="checkbox" ng-class="{selected: setting.type[type.enTxt]}">
+                    <input type="checkbox"
+                           ng-model="setting.type[type.enTxt]"
+                           ng-value="type.enTxt"
+                           ng-change="checkboxChange(type)"
+                           ng-disabled="!type.isChecked && vm.funcSelectedCount === setting.num"/>
+                    <i></i>
+                </span>
+                {{type.cnTxt}}
+            </label>
+        </span>
+    </div>
+    <div class="module-config-item clearfix">
+        <span>布局样式</span>
+        <span>
+            <label class="module-config-item-children" ng-repeat="show in funcModule.config.show">
+                <span class="radio" ng-class="{selected: setting.show === show}">
+                    <input type="radio"
+                       ng-model="setting.show"
+                       ng-value="show"/>
+                    <i></i>
+                </span>
+                <div class="layout-show layout-{{vm.moduleName}}-show layout-{{vm.moduleName}}-show{{setting.num}}-{{$index + 1}}"></div>
+            </label>
+        </span>
+    </div>
+</div>
+
+<div class="p20" ng-if="isAnyCheckboxChecked()">
+    <h4 class="module-config-tt2">上传</h4>
+    <div class="module-fileUpload-bd clearfix" ng-repeat="func in setting.data | filter: {isChecked: true}">
+        <span>功能{{$index + 1}}</span>
+        <span ng-if="func.type === 'func'">
+            <div>
+                <h4 class="clearfix">
+                    <strong class="pull-left" ng-bind="func.cnTxt"></strong>
+                    <span class="sort-btn-ctn pull-right">
+                        <button ng-click="sortUp(func)">向上</button>
+                        <button ng-click="sortDown(func)">向下</button>
+                    </span>
+                </h4>
+                <div class="clearfix func-edit-brand">
+                    <div class="func-name-edit clearfix">
+                        <label>
+                            中文名称
+                            <input ng-model="func.cnName" type="text" placeholder="请输入16个字符内"/>
+                        </label>
+                        <label>
+                            英文名称
+                            <input ng-model="func.enName" type="text" placeholder="请输入16个字符内"/>
+                        </label>
+                    </div>
+                    <div>
+                        <span>模块ICO</span>
+                        <span>
+                            <label class="module-config-item-children mlr10" ng-repeat="(index, el) in func.logo">
+                                <span class="radio" ng-class="{selected: func.logoSelected === el}">
+                                    <input type="radio"
+                                           ng-model="func.logoSelected"
+                                           ng-value="el"/>
+                                    <i></i>
+                                </span>
+                                <span class="layout-logo layout-logo-{{func.enTxt}}-{{$index + 1}} bgRed"></span>
+                            </label>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </span>
+        <span ng-if="func.type === 'shop' && setting.type.shop">
+            <div>
+                <h4 class="clearfix">
+                    <strong>主力店铺</strong>
+                    jpg格式、尺寸520*520px、大小90KB内
+                    <span class="sort-btn-ctn pull-right">
+                        <button ng-click="sortUp(func)">向上</button>
+                        <button ng-click="sortDown(func)">向下</button>
+                    </span>
+                </h4>
+                <div class="clearfix func-edit-shop">
+                    <div>
+                        <span>数量选择</span>
+                        <span>
+                            <label class="module-config-item-children" ng-repeat="(index, el) in func.num">
+                                <span class="radio" ng-class="{selected: func.numSelected === el}">
+                                    <input type="radio"
+                                           ng-model="func.numSelected"
+                                           ng-change="shopNumChange(el)"
+                                           ng-value="el"/>
+                                    <i></i>
+                                </span>
+                                {{el}}
+                            </label>
+                        </span>
+                    </div>
+                    <span class="img-row clearfix" ng-if="vm.shopData.data.length"
+                         ng-repeat="shop in vm.shopData.data">
+                        <div class="img-box pull-left">
+                            <img width="100%" ng-src="{{shop.image}}">
+                        </div>
+                        <div class="pt22">
+                            <label class="mlr8">
+                                <span>
+                            <i class="icon icon-relate"></i>
+                        </span>
+                                <input type="button" value="请点击选择图片关联页面"/>
+                            </label>
+
+                            <div class="sort-btn-ctn">
+                                <button ng-click="deleteShopUpload(shop)">删除</button>
+                                <button ng-click="shopSortUp(shop)">向上</button>
+                                <button ng-click="shopSortDown(shop)">向下</button>
+                            </div>
+                        </div>
+                    </span>
+                    <div ng-if="vm.shopData.numSelected > vm.shopData.data.length">
+                        <div class="upload-btn pull-left"
+                             ngf-select
+                             ngf-change="uploadShop($files)"
+                             ngf-max-width="520"
+                             ngf-max-height="520"
+                             ngf-size="'90KB'"
+                             ngf-pattern="'image/jpeg'">
+                        </div>
+
+                        <label class="relateBtn mlr8 mt22">
+                            <span>
+                            <i class="icon icon-relate"></i>
+                        </span>
+                            <input type="button" value="请点击选择图片关联页面"/>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </span>
+        <span ng-if="func.type === 'qrcode' && setting.type.qrcode">
+            <div>
+                <h4 class="clearfix">
+                    <strong>二维码</strong>
+                    jpg格式、尺寸520*520px、大小90KB内
+                    <span class="sort-btn-ctn pull-right">
+                        <button ng-click="sortUp(func)">向上</button>
+                        <button ng-click="sortDown(func)">向下</button>
+                    </span>
+                </h4>
+                <div class="func-edit">
+                    <div class="clearfix">
+                        <div class="upload-btn pull-left"
+                             ng-if="!vm.qrcode"
+                             ngf-select
+                             ngf-change="uploadQrcode($files)"
+                             ngf-max-width="520"
+                             ngf-max-height="520"
+                             ngf-size="'90KB'"
+                             ngf-pattern="'image/jpeg'">
+                        </div>
+                        <div class="img-box pull-left" ng-if="vm.qrcode">
+                            <img width="100%" ng-src="{{vm.qrcode}}">
+                        </div>
+                        <label class="relateBtn mlr8 mt22">
+                            <span>
+                            <i class="icon icon-relate"></i>
+                        </span>
+                            <input type="button" value="请点击选择图片关联页面"/>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+<div class="save-btn-group">
+    <a class="cms-btn cms-btn-heavy-lg" ui-sref="cms.terminal.content.list">返回列表页</a>
+    <a class="cms-btn cms-btn-heavy-lg" ng-click="save()">确认保存</a>
+</div>

@@ -1,0 +1,61 @@
+<div class="p-list clearfix">
+    <div class="list-case-btn-ctn">
+        <a class="cms-btn cms-btn-heavy-lg" ui-sref="cms.terminal.content.filter">新建</a>
+    </div>
+    <h4 ng-if="vm.usingCaseName" class="fz16 mb10">
+        您终端机正在使用的模板是
+        【<span ng-bind="vm.usingCaseName"></span>】
+    </h4>
+    <p class="mb10">如发布时间过长，请联系您的业务代表处理</p>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>模版</th>
+                <th>创建时间</th>
+                <th>创建人</th>
+                <th>修改时间</th>
+                <th>修改人</th>
+                <th>状态</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="caseObj in caseList">
+                <td ng-bind="getCaseIndex($index)"></td>
+                <td ng-bind="caseObj.name"></td>
+                <td ng-bind="caseObj.create_at"></td>
+                <td ng-bind="caseObj.create_by"></td>
+                <td ng-bind="caseObj.update_at"></td>
+                <td ng-bind="caseObj.update_by"></td>
+                <td ng-switch="caseObj.status">
+                    <span ng-switch-when="0">未启用</span>
+                    <span ng-switch-when="1">正在发布</span>
+                    <span ng-switch-when="2">
+                        已启用
+                        <span class="red" ng-if="caseObj.updating > 0">(有更新)</span>
+                    </span>
+                    <span ng-switch-default>null</span>
+                </td>
+                <td>
+                    <a class="operate" ng-click="edit(caseObj)" ng-class="{disabled: caseObj.status === 1}">编辑</a>
+                    <a class="operate" ng-click="delete(caseObj)" ng-class="{disabled: caseObj.status !== 0}">删除</a>
+                    <a class="operate" ng-click="release(caseObj)" ng-if="caseObj.status === 2 && caseObj.updating > 0">发布</a>
+                    <a class="operate" ng-click="enable(caseObj)" ng-class="{disabled: vm.hasDeploy === 1}" ng-if="caseObj.status === 0">启用</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="clearfix">
+        <!--<span>{{pagination.currentPage}}&nbsp;/&nbsp;{{numPages}}</span>-->
+        <pagination num-pages="numPages"
+                    max-size="10"
+                    total-items="pagination.total"
+                    ng-model="pagination.currentPage"
+                    items-per-page="pagination.pageSize"
+                    previous-text="上一页"
+                    next-text="下一页"
+                    ng-change="pageChangeHandler()">
+        </pagination>
+    </div>
+</div>
