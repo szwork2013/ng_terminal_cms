@@ -1,0 +1,53 @@
+<h4 class="modal-tt">推荐店铺</h4>
+<div class="container-fluid fz14 plr40 ptb20">
+    <div class="row">
+        <div class="col-md-2">
+            <span>店铺名</span>
+        </div>
+        <div class="col-md-8">
+            <input type="search" class="wp100 bd1 pdlr10" placeholder="请输入店铺名" ng-model="vm.shopQuery"/>
+        </div>
+        <div class="col-md-2">
+            <a class="cms-btn cms-btn-heavy" ng-click="queryShop()">查询</a>
+        </div>
+    </div>
+    <div class="row">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>选择</th>
+                    <th>店铺名称</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="shop in vm.shopList">
+                    <td>
+                        <label class="module-config-item-children mlr0">
+                            <span class="radio" ng-class="{disabled: shop.isSelected, selected: shop.id === vm.selectedShop.id}">
+                                <input type="radio"
+                                       ng-model="vm.selectedShop"
+                                       ng-disabled="shop.isSelected"
+                                       ng-value="shop"/>
+                                <i></i>
+                            </span>
+                        </label>
+                    </td>
+                    <td ng-bind="shop.name"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row clearfix mb10">
+        <pagination total-items="pagination.total"
+                    ng-model="pagination.currentPage"
+                    items-per-page="pagination.pageSize"
+                    previous-text="上一页"
+                    next-text="下一页"
+                    ng-change="pageChangeHandler()">
+        </pagination>
+    </div>
+</div>
+<div class="modal-ft">
+    <button class="cms-btn cms-btn-lg" type="button" ng-click="cancel()">取消</button>
+    <button class="cms-btn cms-btn-heavy-lg" type="button" ng-click="confirm()">确认</button>
+</div>

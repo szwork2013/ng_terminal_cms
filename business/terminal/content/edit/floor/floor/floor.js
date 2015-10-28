@@ -2,13 +2,13 @@
  * Created by dulin on 2015/10/12.
  */
 angular.module('cms').controller('TerminalContentEditFloorFloorCtrl',
-    function ($scope, $log, $stateParams, Dialog, caseData, caseConfig, SettingService, $modal, floorData) {
+    function ($scope, $log, $stateParams, Dialog, caseData, caseConfig, SettingService, $modal, floorData, facilityDefaultIcon) {
 
         var settingScope = $scope.$parent.$parent,
             blockName = $stateParams.blockName,
             moduleName = $stateParams.moduleName,
             caseId = $stateParams.caseId,
-            pageType = caseConfig.result.name,
+            page_type = caseConfig.result.name,
             floorResult = floorData.result,
             settingInitialData;
 
@@ -27,70 +27,215 @@ angular.module('cms').controller('TerminalContentEditFloorFloorCtrl',
 
         $scope.vm = {
             buildingList: angular.copy(floorResult),
-            buildingMap: {}
+            buildingMap: {},
+            pagination: {
+                total: -1,
+                currentPage: 1,
+                pageSize: 10
+            },
+            facilities: []
         };
 
-        var ids = _.pluck($scope.vm.buildingList, 'id');
-        angular.forEach(ids, function(id) {
-            $scope.vm.buildingMap[id] = {floorId: 0};
-        });
+        setActiveFloor();
+        function setActiveFloor() {
+            angular.forEach($scope.setting.buildingMap, function(build, buildId) {
+                if(build.isExpand) {
+                    $scope.setting.activeFloor = build.floors['0'];
+                }
+            });
+        }
 
-
-        setVmBuildExtraField();
         /**
-         * ππ‘Ï ”Õº¡Ÿ ± ˝æ›
+         * ÊûÑÈÄ†ËßÜÂõæ‰∏¥Êó∂Êï∞ÊçÆ
          */
-        function setVmBuildExtraField() {
-            angular.forEach($scope.vm.buildingList, function(build) {
+        initVmModel();
+        function initVmModel() {
+            var ids = _.pluck($scope.vm.buildingList, 'id');
+
+            angular.forEach(ids, function (id) {
+                $scope.vm.buildingMap[id] = {floorId: 0};
+            });
+            angular.forEach($scope.vm.buildingList, function (build) {
                 build.activeFloor = _.first(build.floors);
             });
         }
 
+        /**
+         * ÊûÑÈÄ†ËÆæÊñΩLOGOÁªÑÈ¢ÑËßàÊï∞ÊçÆ
+         */
+        generateIconPreview();
+        function generateIconPreview() {
+            var facilityMap = facilityDefaultIcon[$scope.setting.specificLogoGroup]['facilities'];
+
+            angular.forEach(facilityMap, function (facilityUrl, facilityName) {
+                if (_.size($scope.vm.facilities) < 8) {
+                    $scope.vm.facilities.push({
+                        name: facilityName,
+                        url: facilityUrl
+                    });
+                }
+            });
+        }
+
+
+        $log.info('facilities', $scope.vm.facilities);
         $log.info('floorModule:', $scope.floorModule);
         $log.info('buildingMap:', $scope.vm.buildingMap);
 
 
         /**
-         * ¬•≤„«–ªª
-         * @param build ¬•
-         * @param floor ≤„
+         * Ê•ºÂ±ÇÂàáÊç¢
+         * @param build Ê•º
+         * @param floor Â±Ç
          */
-        $scope.changeFloor = function(build, floor) {
+        $scope.changeFloor = function (build, floor) {
             var vmBuild = _.findWhere($scope.vm.buildingList, {id: build.id});
             vmBuild.activeFloor = floor.name;
+            $scope.setting.activeFloor = floor;
             $scope.vm.buildingMap[build.id].floorId = floor.id;
         };
 
         /**
-         * «–ªª¬•≤„≈‰÷√√Ê∞Â’πø™
+         * ÂàáÊç¢Ê•ºÂ±ÇÈÖçÁΩÆÈù¢ÊùøÂ±ïÂºÄ
          * @param build
          */
-        $scope.togglePanel = function(build) {
+        $scope.togglePanel = function (build) {
             build.isExpand = !build.isExpand;
         };
 
+        $scope.recommendMerchantSortDown = function (merchant, merchantsOfFloor) {
+            SettingService.sortDown(merchant, merchantsOfFloor);
+        };
+
+        $scope.recommendMerchantSortUp = function (merchant, merchantsOfFloor) {
+            SettingService.sortUp(merchant, merchantsOfFloor);
+        };
+
         /**
-         * ¥Úø™°∞◊‘∂®“Â ◊∆¡µÍ∆Ã°±ƒ£Ã¨øÚ
+         * ‰øùÂ≠òÁî®Êà∑ÈÖçÁΩÆ
          */
-        $scope.openMerchantShowRuleModal = function () {
+        $scope.save = function () {
+            SettingService.saveUserSetting({
+                mall_id: 1,
+                case_id: caseId,
+                module_name: moduleName,
+                block_name: blockName,
+                module_type: $scope.floorModule.type,
+                setting: $scope.setting,
+                page_type: page_type
+            }).success(function (data) {
+                Dialog.alert(null, '‰øùÂ≠òÊàêÂäü');
+            }).error(function (error) {
+                Dialog.alert(null, error);
+            });
+        };
+
+        /**
+         * ÊâìÂºÄ‚ÄúÊé®ËçêÂ∫óÈì∫‚ÄùÊ®°ÊÄÅÊ°Ü
+         */
+        $scope.recommendMerchantModal = function (buildId, floorId, $index) {
+            var settingBuild, settingFloor, recommend_merchants;
+
+            settingBuild = $scope.setting.buildingMap[buildId];
+            settingFloor = settingBuild.floors[floorId];
+            recommend_merchants = settingFloor.recommend_merchants;
+
+            SettingService.getShopList({
+                mall_id: 1,
+                page_size: $scope.vm.pagination.pageSize
+            }).success(function (data) {
+                var result = data.result;
+                $scope.vm.pagination.currentPage = result.cur_page;
+                $scope.vm.pagination.total = result.total;
+
+                $modal.open({
+                    templateUrl: __uri('./directive/recommendMerchantModal.html'),
+                    controller: 'RecommendMerchantModalCtrl',
+                    backdrop: 'static',
+                    size: 'md',
+                    keyboard: false,
+                    resolve: {
+                        whereOpen: function () {
+                            return 'recommendMerchant';
+                        },
+                        shopList: function () {
+                            return result.data;
+                        },
+                        merchants: function () {
+                            return recommend_merchants;
+                        },
+                        buildAndFloorData: function () {
+                            return {
+                                buildId: buildId,
+                                floorId: floorId,
+                                index: $index
+                            }
+                        },
+                        pagination: function () {
+                            return $scope.vm.pagination;
+                        }
+                    }
+                }).result.then(function (data) {
+                        if (data) {
+                            //TODO ‰øùÂ≠òÊé®ËçêÂ∫óÈì∫
+                            var bid = data.buildAndFloorData.buildId,
+                                fid = data.buildAndFloorData.floorId,
+                                index = data.buildAndFloorData.index,
+                                merchant = data.merchant;
+
+                            settingBuild = $scope.setting.buildingMap[bid];
+                            settingFloor = settingBuild.floors[fid];
+                            recommend_merchants = settingFloor.recommend_merchants;
+
+                            angular.extend(recommend_merchants[index], merchant);
+
+                        }
+                    }, function (error) {
+                        $log.info(error);
+                    })
+            }).error(function (error) {
+                Dialog.alert(null, error);
+            });
+        };
+
+        /**
+         * ÊâìÂºÄ‚ÄúËá™ÂÆö‰πâÈ¶ñÂ±èÂ∫óÈì∫‚ÄùÊ®°ÊÄÅÊ°Ü
+         */
+        $scope.openMerchantShowRuleModal = function (buildId, floorId) {
+            var settingBuild, settingFloor, custom_first_screen_merchants;
+
+            settingBuild = $scope.setting.buildingMap[buildId];
+            settingFloor = settingBuild.floors[floorId];
+            custom_first_screen_merchants = settingFloor.custom_first_screen_merchants;
+
             $modal.open({
                 templateUrl: __uri('./directive/customMerchantModal.html'),
                 controller: 'CustomMerchantModalCtrl',
                 backdrop: 'static',
                 size: 'md',
-                keyboard: false
-            }).result.then(function (data) {
-                    if (data) {
-                        //TODO ±£¥Ê◊‘∂®“Â ◊∆¡µÍ∆Ã
+                keyboard: false,
+                resolve: {
 
+                    merchants: function () {
+                        return custom_first_screen_merchants;
+                    },
+
+                    buildAndFloorData: function () {
+                        return {
+                            buildId: buildId,
+                            floorId: floorId
+                        }
+                    },
+
+                    settingData: function() {
+                        return $scope.setting;
                     }
-                }, function (error) {
-                    $log.info(error);
-                });
+                }
+            });
         };
 
         /**
-         * ¥Úø™°∞÷∏∂®LOGO◊È°±ƒ£Ã¨øÚ
+         * ÊâìÂºÄ‚ÄúÊåáÂÆöLOGOÁªÑ‚ÄùÊ®°ÊÄÅÊ°Ü
          */
         $scope.openSpecifyLogosModal = function () {
             $modal.open({
@@ -98,17 +243,30 @@ angular.module('cms').controller('TerminalContentEditFloorFloorCtrl',
                 controller: 'SelectPublicFacilitiesLogoModalCtrl',
                 backdrop: 'static',
                 size: 'w1022',
-                keyboard: false
+                keyboard: false,
+                resolve: {
+                    facilityDefaultIcon: function () {
+                        return facilityDefaultIcon;
+                    },
+                    publicFacilities: function () {
+                        return $scope.floorModule.config.building.public_facilities
+                    },
+                    specificLogoGroup: function () {
+                        return $scope.setting.specificLogoGroup;
+                    }
+                }
             }).result.then(function (data) {
                     if (data) {
-                        //TODO ±£¥Ê÷∏∂®LOGO◊È
+                        //TODO ‰øùÂ≠òÊåáÂÆöLOGOÁªÑ
+                        $scope.setting.specificLogoGroup = data;
+                        generateIconPreview();
                     }
                 }, function (error) {
                     $log.info(error);
                 });
         };
         /**
-         * ¥Úø™°∞◊‘∂®π´π≤…Ë ©°±ƒ£Ã¨øÚ
+         * ÊâìÂºÄ‚ÄúËá™ÂÆöÂÖ¨ÂÖ±ËÆæÊñΩ‚ÄùÊ®°ÊÄÅÊ°Ü
          */
         $scope.editPublicFacilities = function (buildId, floorId) {
             var settingBuild, settingFloor, public_facilities;
@@ -127,20 +285,20 @@ angular.module('cms').controller('TerminalContentEditFloorFloorCtrl',
                     publicFacilities: function () {
                         return $scope.floorModule.config.building.public_facilities
                     },
-                    buildAndFloorData: function() {
+                    buildAndFloorData: function () {
                         return {
                             buildId: buildId,
                             floorId: floorId
                         }
                     },
-                    settingPublicFacilities: function() {
-                        return public_facilities
+                    settingPublicFacilities: function () {
+                        return public_facilities;
                     }
 
                 }
             }).result.then(function (data) {
                     if (data) {
-                        //TODO ±£¥Ê…Ãº“◊‘∂®“Âµƒ…Ë ©
+                        //TODO ‰øùÂ≠òÂïÜÂÆ∂Ëá™ÂÆö‰πâÁöÑËÆæÊñΩ
                         var bid = data.buildAndFloorData.buildId,
                             fid = data.buildAndFloorData.floorId,
                             facilitySelectedList = data.facilitySelectedList;
@@ -148,7 +306,7 @@ angular.module('cms').controller('TerminalContentEditFloorFloorCtrl',
                         settingBuild = $scope.setting.buildingMap[bid];
                         settingFloor = settingBuild.floors[fid];
 
-                        if(angular.isArray(settingFloor.public_facilities)){
+                        if (angular.isArray(settingFloor.public_facilities)) {
                             settingFloor.public_facilities = null;
                         }
                         settingFloor.public_facilities = facilitySelectedList;
@@ -160,7 +318,7 @@ angular.module('cms').controller('TerminalContentEditFloorFloorCtrl',
         };
 
         /**
-         * ¥Úø™"◊‘∂®“Âπ´π≤…Ë ©LOGO◊È"ƒ£Ã¨øÚ
+         * ÊâìÂºÄ"Ëá™ÂÆö‰πâÂÖ¨ÂÖ±ËÆæÊñΩLOGOÁªÑ"Ê®°ÊÄÅÊ°Ü
          */
         $scope.openCustomLogosModal = function () {
             $modal.open({
@@ -176,7 +334,7 @@ angular.module('cms').controller('TerminalContentEditFloorFloorCtrl',
                 }
             }).result.then(function (data) {
                     if (data) {
-                        //TODO ±£¥Ê…Ãº“…œ¥´µƒ…Ë ©LOGO
+                        //TODO ‰øùÂ≠òÂïÜÂÆ∂‰∏ä‰º†ÁöÑËÆæÊñΩLOGO
                     }
                 }, function (error) {
                     $log.info(error);
@@ -184,28 +342,200 @@ angular.module('cms').controller('TerminalContentEditFloorFloorCtrl',
         };
 
     })
-    .controller('CustomMerchantModalCtrl',
-    function ($scope, $log, $modalInstance, $rootScope) {
-        $scope.cancel = function () {
-            $modalInstance.dismiss('»°œ˚');
-        };
-
-        $scope.confirm = function () {
-            $modalInstance.close(true);
-        };
-
-        $rootScope.$on('$stateChangeStart', $scope.cancel);
-    })
-    /*÷∏∂®π´π≤…Ë ©LOGO◊Ècontroller*/
-    .controller('SelectPublicFacilitiesLogoModalCtrl',
-    function ($scope, $log, $modalInstance, $rootScope) {
+    /*Êé®ËçêÂ∫óÈì∫*/
+    .controller('RecommendMerchantModalCtrl',
+    function ($scope,
+              $log,
+              $modalInstance,
+              $rootScope,
+              shopList,
+              merchants,
+              buildAndFloorData,
+              pagination,
+              SettingService,
+              Dialog,
+              whereOpen) {
 
         $scope.vm = {
+            shopList: angular.copy(shopList),
+            selectedShop: null,
+            shopQuery: '',
+            pagination: pagination,
+            customShop: null
+        };
 
+        $log.info('whereOpen', whereOpen);
+
+        initShopList();
+        function initShopList() {
+            var vmShop;
+            angular.forEach($scope.vm.shopList, function (shop) {
+                shop.isSelected = false;
+            });
+            angular.forEach(merchants, function (merchant) {
+                if (merchant.id) {
+                    vmShop = _.findWhere($scope.vm.shopList, {id: merchant.id});
+                    vmShop.isSelected = true;
+                }
+            });
+        }
+
+        $log.info('shopList:', $scope.vm.shopList);
+        $log.info('merchants:', merchants);
+
+        function requestShopList(queryString) {
+            SettingService.getShopList({
+                mall_id: 1,
+                keyword: queryString || '',
+                page: $scope.vm.pagination.currentPage,
+                page_size: $scope.vm.pagination.pageSize
+            }).success(function (data) {
+                var result = data.result;
+                $scope.vm.pagination.currentPage = result.cur_page;
+                $scope.vm.pagination.total = result.total;
+                $scope.vm.shopList = angular.copy(result.data);
+                initShopList();
+            }).error(function (error) {
+                Dialog.alert(null, error);
+            })
+        }
+
+        /**
+         * Â∫óÈì∫Êü•ËØ¢
+         */
+        $scope.queryShop = function () {
+            requestShopList($scope.vm.shopQuery);
+        };
+
+        /**
+         * ÂàÜÈ°µÊü•ËØ¢
+         */
+        $scope.pageChangeHandler = function () {
+            requestShopList();
         };
 
         $scope.cancel = function () {
-            $modalInstance.dismiss('»°œ˚');
+            $modalInstance.dismiss('ÂèñÊ∂à');
+        };
+
+        $scope.confirm = function () {
+            var data = {buildAndFloorData: buildAndFloorData};
+
+            //if(whereOpen === 'recommendMerchant') {
+            //    data.recommend_merchant = angular.copy($scope.vm.selectedShop);
+            //} else if(whereOpen === 'customMerchant') {
+            //    data.custom_merchant = angular.copy($scope.vm.customShop);
+            //}
+
+            data.merchant = angular.copy($scope.vm.selectedShop);
+
+            $modalInstance.close(data);
+        };
+
+        $rootScope.$on('$stateChangeStart', $scope.cancel);
+    })
+    /*Ëá™ÂÆö‰πâ‚ÄúÈ¶ñÂ±èÂ±ïÁ§∫Â∫óÈì∫‚ÄùÂèäÈ°∫Â∫è*/
+    .controller('CustomMerchantModalCtrl',
+    function ($scope,
+              $log,
+              $modalInstance,
+              $rootScope,
+              $modal,
+              merchants,
+              buildAndFloorData,
+              SettingService,
+              Dialog,
+              settingData) {
+
+        $scope.vm = {
+            pagination: {
+                total: -1,
+                currentPage: 1,
+                pageSize: 10
+            }
+        };
+
+        $scope.setting = {
+            customFirstScreenMerchants: merchants,
+            data: null
+        };
+
+        $scope.openShopListModal = function ($index) {
+            angular.extend(buildAndFloorData, {index: $index});
+
+            SettingService.getShopList({
+                mall_id: 1,
+                page: $scope.vm.pagination.currentPage,
+                page_size: $scope.vm.pagination.pageSize
+            }).success(function(data) {
+                var result = data.result;
+                $scope.vm.pagination.currentPage = result.cur_page;
+                $scope.vm.pagination.total = result.total;
+
+                $modal.open({
+                    templateUrl: __uri('./directive/recommendMerchantModal.html'),
+                    controller: 'RecommendMerchantModalCtrl',
+                    backdrop: 'static',
+                    size: 'md',
+                    keyboard: false,
+                    resolve: {
+                        whereOpen: function () {
+                            return 'customMerchant';
+                        },
+                        shopList: function() {
+                            return result.data;
+                        },
+                        merchants: function() {
+                            return merchants;
+                        },
+                        buildAndFloorData: function () {
+                            return buildAndFloorData;
+                        },
+                        pagination: function () {
+                            return $scope.vm.pagination;
+                        }
+                    }
+                }).result.then(function (data) {
+                        if (data) {
+                            //TODO ‰øùÂ≠òËá™ÂÆö‰πâÈ¶ñÂ±èÂ∫óÈì∫
+                            $scope.setting.data = data;
+                            var bid = data.buildAndFloorData.buildId,
+                                fid = data.buildAndFloorData.floorId,
+                                index = data.buildAndFloorData.index,
+                                merchant = data.merchant;
+
+                            var settingBuild = settingData.buildingMap[bid],
+                                settingFloor = settingBuild.floors[fid],
+                                custom_first_screen_merchants = settingFloor.custom_first_screen_merchants;
+
+                            angular.extend(custom_first_screen_merchants[index], merchant);
+                        }
+                    }, function (error) {
+                        $log.info(error);
+                    });
+            }).error(function(error) {
+                Dialog.alert(null, error);
+            });
+        };
+
+        $scope.add = function($index) {
+            merchants.splice($index + 1, 0, {});
+        };
+
+        $scope.delete = function($index) {
+            merchants.splice($index, 1);
+        };
+
+        $scope.sortDown = function(merchant) {
+            SettingService.sortDown(merchant, merchants);
+        };
+
+        $scope.sortUp = function(merchant) {
+            SettingService.sortUp(merchant, merchants);
+        };
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('ÂèñÊ∂à');
         };
 
         $scope.confirm = function () {
@@ -214,7 +544,29 @@ angular.module('cms').controller('TerminalContentEditFloorFloorCtrl',
 
         $rootScope.$on('$stateChangeStart', $scope.cancel);
     })
-    /*◊‘∂®“ÂLOGO◊Ècontroller*/
+    /*ÊåáÂÆöÂÖ¨ÂÖ±ËÆæÊñΩLOGOÁªÑcontroller*/
+    .controller('SelectPublicFacilitiesLogoModalCtrl',
+    function ($scope, $log, $modalInstance, $rootScope, facilityDefaultIcon, publicFacilities, specificLogoGroup) {
+
+        $scope.vm = {
+            facilityDefaultIcon: facilityDefaultIcon,
+            publicFacilities: publicFacilities,
+            selectedLogoGroup: specificLogoGroup
+        };
+
+        $log.info('facilityDefaultIcon', $scope.vm.facilityDefaultIcon);
+
+        $scope.cancel = function () {
+            $modalInstance.dismiss('ÂèñÊ∂à');
+        };
+
+        $scope.confirm = function () {
+            $modalInstance.close($scope.vm.selectedLogoGroup);
+        };
+
+        $rootScope.$on('$stateChangeStart', $scope.cancel);
+    })
+    /*Ëá™ÂÆö‰πâLOGOÁªÑcontroller*/
     .controller('CustomLogoModalCtrl',
     function ($scope, $log, $modalInstance, $rootScope, publicFacilities) {
 
@@ -223,7 +575,7 @@ angular.module('cms').controller('TerminalContentEditFloorFloorCtrl',
         };
 
         $scope.cancel = function () {
-            $modalInstance.dismiss('»°œ˚');
+            $modalInstance.dismiss('ÂèñÊ∂à');
         };
 
         $scope.confirm = function () {
@@ -232,9 +584,15 @@ angular.module('cms').controller('TerminalContentEditFloorFloorCtrl',
 
         $rootScope.$on('$stateChangeStart', $scope.cancel);
     })
-    /*◊‘∂®“Âπ´π≤…Ë ©controller*/
+    /*Ëá™ÂÆö‰πâÂÖ¨ÂÖ±ËÆæÊñΩcontroller*/
     .controller('CustomPublicFacilitiesModalCtrl',
-    function ($scope, $log, $modalInstance, $rootScope, publicFacilities, buildAndFloorData, settingPublicFacilities) {
+    function ($scope,
+              $log,
+              $modalInstance,
+              $rootScope,
+              publicFacilities,
+              buildAndFloorData,
+              settingPublicFacilities) {
 
         $scope.vm = {
             publicFacilities: publicFacilities,
@@ -243,24 +601,24 @@ angular.module('cms').controller('TerminalContentEditFloorFloorCtrl',
 
         initFacilityMap(settingPublicFacilities);
         function initFacilityMap(settingPublicFacilities) {
-            $scope.vm.facilityMap = _.mapObject(angular.copy(publicFacilities), function() {
+            $scope.vm.facilityMap = _.mapObject(angular.copy(publicFacilities), function () {
                 return '';
             });
 
-            angular.forEach(settingPublicFacilities, function(facility) {
+            angular.forEach(settingPublicFacilities, function (facility) {
                 $scope.vm.facilityMap[facility] = true;
             });
         }
 
 
         $scope.cancel = function () {
-            $modalInstance.dismiss('»°œ˚');
+            $modalInstance.dismiss('ÂèñÊ∂à');
         };
 
         $scope.confirm = function () {
             var facilitySelectedList = [];
-            angular.forEach($scope.vm.facilityMap, function(val, k) {
-                if(val) {
+            angular.forEach($scope.vm.facilityMap, function (val, k) {
+                if (val) {
                     facilitySelectedList.push(k);
                 }
             });

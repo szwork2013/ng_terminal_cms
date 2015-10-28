@@ -20,6 +20,33 @@ angular.module('cmsService').factory('SettingService',
             return modules;
         };
 
+        var param = function (obj) {
+            var query = "", name, value, fullSubName, subName, subValue, innerObj, i;
+            for (name in obj) {
+                value = obj[name];
+                if (value instanceof Array) {
+                    for (i = 0; i < value.length; ++i) {
+                        subValue = value[i];
+                        fullSubName = name + "[" + i + "]";
+                        innerObj = {};
+                        innerObj[fullSubName] = subValue;
+                        query += param(innerObj) + "&";
+                    }
+                } else if (value instanceof Object) {
+                    for (subName in value) {
+                        subValue = value[subName];
+                        fullSubName = name + "[" + subName + "]";
+                        innerObj = {};
+                        innerObj[fullSubName] = subValue;
+                        query += param(innerObj) + "&";
+                    }
+                } else if (value !== undefined && value !== null) {
+                    query += encodeURIComponent(name) + "=" + encodeURIComponent(value) + "&";
+                }
+            }
+            return query.length ? query.substr(0, query.length - 1) : query;
+        };
+
         return {
             getFloorData: function (params) {
                 var url = '/api/mall/floor';
@@ -28,12 +55,27 @@ angular.module('cmsService').factory('SettingService',
                     method: 'POST',
                     url: url,
                     params: params
-                })
-                    .success(function (data) {
-                        deferred.resolve(data);
-                    }).error(function () {
-                        deferred.reject('获取楼层数据出错，请重试');
-                    });
+                }).success(function (data) {
+                    deferred.resolve(data);
+                }).error(function () {
+                    deferred.reject('获取楼层数据出错，请重试');
+                });
+
+                return deferred.promise;
+            },
+
+
+            getFacilityDefaultIcon: function () {
+                var url = '/api/case/facility/icon/default';
+                var deferred = $q.defer();
+                $http({
+                    method: 'POST',
+                    url: url
+                }).success(function (data) {
+                    deferred.resolve(data);
+                }).error(function () {
+                    deferred.reject('获取默认公共设施图标出错，请重试');
+                });
 
                 return deferred.promise;
             },
@@ -44,8 +86,9 @@ angular.module('cmsService').factory('SettingService',
                     merchantType: 'single',
                     logoKey: 'default',
                     customLogos: [],
-                    specificLogo: 1,
-                    buildingList: angular.copy(floorData)
+                    specificLogoGroup: 'default1',
+                    buildingList: angular.copy(floorData),
+                    activeFloor: null
                 };
 
                 var merchant_show_rule = _.mapObject(angular.copy(buildingConfig.merchant_show_rule),
@@ -55,8 +98,8 @@ angular.module('cmsService').factory('SettingService',
 
                 var values, ids;
 
-                angular.forEach(data.buildingList, function (building) {
-                    angular.forEach(building.floors, function(floor, index, floors) {
+                angular.forEach(data.buildingList, function (building, index) {
+                    angular.forEach(building.floors, function (floor, index, floors) {
                         floors[index] = {
                             id: index,
                             name: floor,
@@ -65,10 +108,11 @@ angular.module('cmsService').factory('SettingService',
                             isNameShow: false,
                             introductions: [],
                             first_screen_merchant_rule: 'default',
-                            recommend_merchant: [],
+                            recommend_merchants: [{}, {}, {}],
+                            custom_first_screen_merchants: [{}],
                             public_facilities: null
                         };
-                        for(var i = 0; i < 6; i++) {
+                        for (var i = 0; i < 6; i++) {
                             floors[index].introductions.push({
                                 id: i,
                                 data: ''
@@ -85,7 +129,7 @@ angular.module('cmsService').factory('SettingService',
                         nameKey: 'dong',
                         name: '',
                         title: '',
-                        isExpand: false,
+                        isExpand: !index,
                         merchant_sort: 'latest_time',
                         isShow: false,
                         merchant_show_rule: angular.copy(merchant_show_rule)
@@ -260,11 +304,16 @@ angular.module('cmsService').factory('SettingService',
              * @returns {*}
              */
             saveUserSetting: function (datas) {
+                datas.setting = angular.toJson(datas.setting);
                 var deferred = $q.defer();
                 $http({
                     method: 'POST',
                     url: '/api/case/page/module/set',
-                    params: datas
+                    data: datas,
+                    headers: {'Content-Type':'application/x-www-form-urlencoded'},
+                    transformRequest: function(data) {
+                        return angular.isObject(data) && String(data) !== "[object File]" ? param(data) : data;
+                    }
                 }).success(function (data) {
                     deferred.resolve(data);
                 }).error(function (error) {

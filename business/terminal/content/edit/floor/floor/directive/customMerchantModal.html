@@ -5,19 +5,23 @@
             该楼层现有<strong>70</strong>个店铺，您最多可以设置首屏<strong>25</strong>个默认展示店铺，其余店铺按您所设置的排序顺序展示
         </p>
     </div>
-    <div class="row">
+    <div class="row" ng-repeat="customFirstScreenMerchant in setting.customFirstScreenMerchants">
         <div class="col-md-1">
-            <span>01</span>
+            <span ng-bind="$index + 1"></span>
         </div>
         <div class="col-md-6">
-            <button type="button" class="btn btn-default wp100">请点击添加要首屏展示的店铺</button>
+            <button type="button"
+                    ng-click="openShopListModal($index)"
+                    class="btn btn-default wp100">
+                {{customFirstScreenMerchant.name ? customFirstScreenMerchant.name : '请点击添加要首屏展示的店铺'}}
+            </button>
         </div>
         <div class="col-md-5">
             <div class="sort-btn-ctn">
-                <button><i class="icon icon-arrow-down">下</i></button>
-                <button><i class="icon icon-arrow-up">上</i></button>
-                <button>+</button>
-                <button>-</button>
+                <button ng-disabled="$last" ng-click="sortDown(customFirstScreenMerchant)">下</button>
+                <button ng-disabled="$first" ng-click="sortUp(customFirstScreenMerchant)">上</button>
+                <button ng-click="add($index)">+</button>
+                <button ng-click="delete($index)">-</button>
             </div>
         </div>
     </div>

@@ -1,14 +1,78 @@
 {
-  "num": "2",
-  "data": [
-    {
-      "bgUrl": "http://dev2.rongyi.com/upload/front/1/20150925170932_2-play.jpg",
-      "titleUrl": "http://dev2.rongyi.com/upload/front/1/20150925170943_play1.png"
+  "name": "floor1",
+  "type": "floor",
+  "display_type": "楼层导购",
+  "config": {
+    "show": [
+      1
+    ],
+    "type": {
+      "single": "单栋",
+      "multiple": "多栋",
+      "outdoor": "室外",
+      "multiple_unity": "多馆合一"
     },
-    {
-      "bgUrl": "http://dev2.rongyi.com/upload/front/1/20150925170957_2-food.jpg",
-      "titleUrl": "http://dev2.rongyi.com/upload/front/1/20150925170948_food1.png"
+    "logo": [
+      {
+        "key": "default"
+      },
+      {
+        "key": "custom"
+      }
+    ],
+    "building": {
+      "name": {
+        "lou": "楼",
+        "dong": "栋",
+        "zhuang": "幢",
+        "zuo": "座"
+      },
+      "merchant_sort": {
+        "letter": "以字母顺序排序",
+        "latest_time": "以最新发布时间排序"
+      },
+      "merchant_show_rule": {
+        "preferential": "优先显示有优惠的店铺"
+      },
+      "first_screen_merchant_rule": [
+        {
+          "key": "default",
+          "value": "按默认店铺展示顺序显示"
+        },
+        {
+          "key": "custom",
+          "value": "自定义首屏展示顺序"
+        }
+      ],
+      "public_facilities": {
+        "entrance": "商场入口",
+        "exit": "安全出口",
+        "employee_entrance": "员工通道",
+        "stairs": "楼梯",
+        "escalator": "扶梯",
+        "straight_ladder": "直梯",
+        "freight_elevator": "货梯",
+        "ATM": "ATM",
+        "toilet": "洗手间",
+        "toilet_male": "洗手间-男",
+        "toilet_female": "洗手间-女",
+        "barrier_free_toilet": "无障碍洗手间",
+        "checkstand": "收银台",
+        "air_corridor": "空中走廊",
+        "reception_desk": "服务台",
+        "information_desk": "问询处",
+        "maternal_and_infant_room": "母婴室",
+        "rest_room": "休息室",
+        "water_room": "打水间",
+        "observation_elevator": "观光电梯",
+        "parking_lot": "停车场",
+        "railway": "地铁",
+        "coffee_house": "咖啡厅",
+        "restaurant": "餐厅",
+        "underground_car": "地下车口",
+        "stereo_garage": "立体车库"
+      }
     }
-  ],
-  "name": "nav2"
+  }
 }
+

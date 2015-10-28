@@ -188,52 +188,30 @@
                                 </span>
                                 <span ng-bind="first_screen_merchant_rule.value"></span>
                                 <a class="link" ng-if="first_screen_merchant_rule.key === 'custom'"
-                                   ng-click="openMerchantShowRuleModal()">点击设置</a>
+                                   ng-click="openMerchantShowRuleModal(buildId, vm.buildingMap[buildId].floorId)">点击设置</a>
                             </label>
                         </div>
                     </div>
                     <div class="row">
                         <p class="col-md-12">推荐店铺</p>
                     </div>
-                    <div class="row">
+                    <div class="row"
+                         ng-repeat="recommend_merchant in setting.buildingMap[buildId]['floors'][vm.buildingMap[buildId].floorId].recommend_merchants"
+                         ng-class="{dashed: $last, pb20: $last}">
                         <div class="col-md-2">
-                            <span>推荐1</span>
+                            <span>推荐{{$index + 1}}</span>
                         </div>
                         <div class="col-md-7">
-                            <button type="button" class="btn btn-default wp100">点击选择要推荐的店铺</button>
+                            <button type="button"
+                                    ng-click="recommendMerchantModal(buildId, vm.buildingMap[buildId].floorId, $index)"
+                                    class="btn btn-default wp100 tl gray">
+                                {{recommend_merchant.name ? recommend_merchant.name : '点击选择要推荐的店铺'}}
+                            </button>
                         </div>
                         <div class="col-md-3">
                             <div class="sort-btn-ctn">
-                                <button><i class="icon icon-arrow-down">下</i></button>
-                                <button><i class="icon icon-arrow-up">上</i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <span>推荐2</span>
-                        </div>
-                        <div class="col-md-7">
-                            <button type="button" class="btn btn-default wp100">点击选择要推荐的店铺</button>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="sort-btn-ctn">
-                                <button><i class="icon icon-arrow-down">下</i></button>
-                                <button><i class="icon icon-arrow-up">上</i></button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row dashed pb20">
-                        <div class="col-md-2">
-                            <span>推荐3</span>
-                        </div>
-                        <div class="col-md-7">
-                            <button type="button" class="btn btn-default wp100">点击选择要推荐的店铺</button>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="sort-btn-ctn">
-                                <button><i class="icon icon-arrow-down">下</i></button>
-                                <button><i class="icon icon-arrow-up">上</i></button>
+                                <button ng-disabled="$last" ng-click="recommendMerchantSortDown(recommend_merchant, setting.buildingMap[buildId]['floors'][vm.buildingMap[buildId].floorId].recommend_merchants)">下</button>
+                                <button ng-disabled="$first" ng-click="recommendMerchantSortUp(recommend_merchant, setting.buildingMap[buildId]['floors'][vm.buildingMap[buildId].floorId].recommend_merchants)">上</button>
                             </div>
                         </div>
                     </div>
@@ -279,7 +257,11 @@
                         <span ng-if="logo.key === 'default'">
                             <span>默认LOGO组</span>
                             <a class="link" ng-click="openSpecifyLogosModal()">更换LOGO组</a>
-                            <div class="logo-group logo-group-pre-1"></div>
+                            <span class="icon-prev-box">
+                                <span ng-repeat="facility in vm.facilities">
+                                    <img width="40" height="40" ng-src="{{facility.url}}" alt="{{facility.name}}"/>
+                                </span>
+                            </span>
                         </span>
                         <span ng-if="logo.key === 'custom'">
                             <span>自定义上传LOGO组</span>
@@ -290,4 +272,8 @@
             </div>
         </div>
     </div>
+</div>
+<div class="save-btn-group">
+    <a class="cms-btn cms-btn-heavy-lg" ui-sref="cms.terminal.content.list">返回列表页</a>
+    <a class="cms-btn cms-btn-heavy-lg" ng-click="save()">确认保存</a>
 </div>

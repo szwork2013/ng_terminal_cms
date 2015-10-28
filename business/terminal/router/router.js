@@ -296,6 +296,15 @@ angular.module('cms').config(function ($stateProvider, $urlRouterProvider, Const
                     return SettingService.getFloorData({
                         mall_id: 1
                     });
+                },
+
+                facilityDefaultIcon: function (SettingService, Dialog) {
+                    return SettingService.getFacilityDefaultIcon()
+                        .then(function (data) {
+                            return data.result;
+                        }, function (error) {
+                            Dialog.alert(null, error);
+                        });
                 }
             }
         })

@@ -3,49 +3,24 @@
     <div class="row">
         <p class="col-md-12">指定显示LOGO组</p>
     </div>
-    <div class="row">
+    <div class="row" ng-repeat-start="(groupName, groupObj) in vm.facilityDefaultIcon">
         <div class="col-md-12">
             <label class="module-config-item-children mlr0">
-                    <span class="radio">
-                        <input type="radio"/>
-                        <i></i>
-                    </span>
-                <span>LOGO组名1</span>
+                <span class="radio" ng-class="{selected: vm.selectedLogoGroup === groupName}">
+                    <input type="radio" ng-model="vm.selectedLogoGroup" ng-value="groupName"/>
+                    <i></i>
+                </span>
+                <span ng-bind="groupObj.group_display_name"></span>
             </label>
         </div>
     </div>
-    <div class="row dashed">
+    <div class="row" ng-class="{dashed: !$last}" ng-repeat-end>
         <div class="col-md-12">
-            <div class="logo-group logo-group-1"></div>
+            <span class="icon-box" ng-repeat="(facilityName, facilityUrl) in groupObj.facilities">
+                <img ng-src="{{facilityUrl}}" alt="{{facilityName}}"/>
+                <span ng-bind="vm.publicFacilities[facilityName]"></span>
+            </span>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <label class="module-config-item-children mlr0">
-                    <span class="radio">
-                        <input type="radio"/>
-                        <i></i>
-                    </span>
-                <span>LOGO组名2</span>
-            </label>
-        </div>
-    </div>
-    <div class="row dashed">
-
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <label class="module-config-item-children mlr0">
-                    <span class="radio">
-                        <input type="radio"/>
-                        <i></i>
-                    </span>
-                <span>LOGO组名3</span>
-            </label>
-        </div>
-    </div>
-    <div class="row">
-
     </div>
 </div>
 <div class="modal-ft">
